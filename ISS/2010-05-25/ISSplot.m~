@@ -1,0 +1,19 @@
+% make ISS plots.
+
+load('../../DARMcalib.mat')
+
+filenames = {'20pm8W.txt','15pm8W.txt'};
+offsets =   { 20,          15};
+
+num = length(filenames);
+
+datas(num) = struct;
+
+for jj = 1:num
+    loaded = load(filenames{jj});
+    datas(jj).f = loaded(:,1);
+    datas(jj).TF = loaded(:,2)+1i*loaded(:,3);
+    datas(jj).offset = offsets{jj};
+end
+
+TF20pm = [datas(1).f,datas(1).TF]

@@ -1,0 +1,10 @@
+% loads DTT OLMON to RIN calib
+
+OLdata = DTTload('OLMONtoOMCPD_20.6dc.txt'); % OLMON / DCPD
+
+DCPDval = 20.6;
+
+OLMONcalib = colmult(tfinv(OLdata),[1,DCPDval]);
+
+
+save OLMONcalib.mat OLMONcalib

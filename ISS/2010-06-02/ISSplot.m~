@@ -1,0 +1,39 @@
+% make ISS plots.
+
+load('../../DARMcalib.mat')
+load('../OLMONcalib.mat')
+
+clear dataStructure;
+
+% organize data
+offsets = [-29 -23 -15 -07 07 15 23 29];
+
+for kk = 1:length(offsets)
+    offstring = num2str(abs(offsets(kk)),'%02d');
+    if offsets(kk)<0
+        offstring = ['-' offstring];
+    end
+    
+    dataStructure(kk).offset = offsets(kk)*1e-12;
+    dataStructure(kk).filenames = {['x0' offstring 'pm8Wlf.txt'],...
+                                   ['x0' offstring 'pm8Whf.txt']};
+    
+    TF = [];                           
+    for jj = 1:length(dataStructure.filenames)
+        TF = specpatch(TF,DTTloadTF(data
+end
+% 
+% 
+% 
+% TFm15pm = specpatch(DTTloadTF('x0-15pm8wlf.txt'),DTTloadTF('x0-15pm8whf.txt'));
+% 
+% TFm15pmcal = calTF(TFm15pm,DARMcalib,OLMONcalib);
+% 
+% figure(335)
+% SRSbode(TF07pmcal,TFm15pmcal)
+% title('Intensity Noise Coupling')
+% legend('7pm','-15pm')
+% ylabel('m/RIN')
+% 
+% % figure(333)
+% % SRSbode(TF20pm,TF15pm)

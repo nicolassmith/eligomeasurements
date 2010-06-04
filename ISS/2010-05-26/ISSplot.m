@@ -1,0 +1,30 @@
+% make ISS plots.
+
+load('../../DARMcalib.mat')
+load('../OLMONcalib.mat')
+
+TF07pm = specpatch(DTTloadTF('x0007pm8Wlf.txt'),DTTloadTF('x0007pm8Wmf.txt'),DTTloadTF('x0007pm8Whf.txt'));
+
+TF07pmcal = calTF(TF07pm,DARMcalib,OLMONcalib);
+
+TF10pm = specpatch(DTTloadTF('x010pm8Wlf.txt'),DTTloadTF('x010pm8Whf.txt'));
+
+TF10pmcal = calTF(TF10pm,DARMcalib,OLMONcalib);
+
+TF15pm = specpatch(DTTloadTF('x015pm8Wlf.txt'),DTTloadTF('x015pm8Whf.txt'));
+
+TF15pmcal = calTF(TF15pm,DARMcalib,OLMONcalib);
+
+TF20pm = specpatch(DTTloadTF('x020pm8Wlf.txt'),DTTloadTF('x020pm8Whf.txt'));
+
+TF20pmcal = calTF(TF20pm,DARMcalib,OLMONcalib);
+
+
+figure(335)
+SRSbode(TF07pmcal,TF10pmcal,TF15pmcal,TF20pmcal)
+title('Intensity Noise Coupling')
+legend('7pm','10pm','15pm','20pm')
+ylabel('m/RIN')
+
+% figure(333)
+% SRSbode(TF20pm,TF15pm)
