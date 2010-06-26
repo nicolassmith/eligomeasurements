@@ -1,0 +1,48 @@
+% calibration of mod drive
+
+f_cal = 967.5 ;
+
+% first the ETM injection
+darm_etm = 9.77921e-05 +1i* -7.3257e-05;
+
+refl_etm = 0.000456269 +1i* 0.00280047;
+
+load('../DARMcalib.mat')
+meters_darm = calTF([f_cal,1],DARMcalib);
+
+c = 299792458;
+lambda = 1064e-9;
+L = 3995;
+hz_meters = c/(lambda*L);
+
+hz_refl_atfcal = hz_meters * meters_darm(2) * darm_etm / refl_etm;
+
+% then the MOD injection
+
+mod_resp = 0.000603446 +1i* 0.00998727;
+
+refl_resp = -0.0350617 +1i* 0.099748;
+
+mod_refl = mod_resp / refl_resp;
+
+% put it together  %ATTENTION MOD PER MOD IS TOTALLY WRONG
+
+modpermod = DTTloadTF('modpermodinsanity.txt');
+modpermod = [modpermod(:,1),modpermod(:,2).^0]; %mod per mod removed here
+
+hz_mod_atfcal = [modpermod(:,1),hz_refl_atfcal / mod_refl .* modpermod(:,2)]; %removed mod per mod
+
+
+% lets take out that damn delay
+
+% delay measured
+
+delay_phi = 2430 *pi/180; %measured in radians
+delay_f =   3351;% at this frequency (Hz)
+
+delay_t = delay_phi / (2*pi) / delay_f;
+
+f_data = modpermod(:,1);
+MODcalib = [f_data , (1i * f_data)./f_cal .* hz_mod_atfcal(:,2) .* exp(-1i*2*pi*delay_t*f_data)];
+
+save('MODcalib.mat','MODcalib');

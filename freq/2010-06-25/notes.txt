@@ -1,0 +1,10 @@
+-7pm
+ops@control2:06-15> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:LSC-REFL_DC H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+1808.51
+-475.37
+21.0188
+364.692
+960709641
+
+
+not really

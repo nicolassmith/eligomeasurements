@@ -1,0 +1,36 @@
+% calibration of mod drive
+
+f_cal = 967.5 ;
+
+% first the ETM injection
+darm_etm = 9.77921e-05 +1i* -7.3257e-05;
+
+refl_etm = 0.000456269 +1i* 0.00280047;
+
+load('../DARMcalib.mat')
+meters_darm = calTF([f_cal,1],DARMcalib);
+
+c = 299792458;
+lambda = 1064e-9;
+L = 3995;
+hz_meters = c/(lambda*L);
+
+hz_refl_atfcal = hz_meters * meters_darm(2) * darm_etm / refl_etm;
+
+% then the MOD injection
+
+mod_resp = 0.000603446 +1i* 0.00998727;
+
+refl_resp = -0.0350617 +1i* 0.099748;
+
+mod_refl = mod_resp / refl_resp;
+
+% put it together
+
+fudge = 0.04;
+
+modpermod = DTTloadTF('modpermodinsanity.txt'
+
+hz_mod_atfcal = hz_refl_atfcal / mod_refl*fudge;
+
+save('MODcalib.mat','f_cal','hz_mod_atfcal');

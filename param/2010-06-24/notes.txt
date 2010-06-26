@@ -1,0 +1,72 @@
+notes on measuring Contrast defect related stuff
+
+first we go on bright michelson locked to OMC, then quickly shift to
+dark michelson.
+
+01 ---
+
+try again, disable OMC alignment first
+
+02 ---
+
+now let the michelson free swing
+
+03 --- shit disn't save
+
+improve the alignment a little (it also isn't really swinging much)
+
+04 ---
+
+now we wanna look at 1 itm at a time
+
+05 - ITMY
+
+06 - ITMX
+
+should be monitoring the input beam (how about more time too)
+
+07 ITMX again
+
+08 itmy again (forgot about more time)
+
+now more time 
+
+09 itmy
+
+crap REFCAV and MC lost lock
+
+10 itmy
+
+increase itmx misalignment to be sure scattered light from itmx isn't affecting
+
+11 itmy
+
+now itmx
+
+12 itmx
+
+change itmy alignment to be sure scattered light not an issue
+
+13 itmx
+
+now measure dark levels
+
+14 dark
+
+try 1 arm mich for the halibut
+
+15 bright 1armMich
+
+16 dark 1 arm
+
+17 DARM sweep
+
+18 better alingment (no length integrator)
+
+no deacon made things quieter
+
+19 darm sweep cleaned up with all the goodness (alignment was good, but turned off, length integrator, koji fixed crackeling)
+
+19 was NOT NICE stupid AS5 offset
+
+20 is the shit (everything about 19 but after a lockloss (brought back to same QPD location (spob was still climbing)) and with no AS5 offset)
