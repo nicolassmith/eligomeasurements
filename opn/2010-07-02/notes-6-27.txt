@@ -1,0 +1,81 @@
+%notes for 6-27 OPN coupling
+
+removed RF offsets on AS5 this time.
+
+locked DC at -15"pm"
+
+had to turn down WFS gains from 0.006 to 0.004 to quench oscillation.
+
+starting at x0 = 15pm.
+hf-a:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-718.624
+8698.37
+40.0462
+540.891
+961729349
+
+(looked like OMC alignment was drifting too much)
+Turned on drumhead alignment
+
+hf-b:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-727.841
+8696.94
+42.7218
+579.578
+961729906
+
+lost lock (it was the FSS related problem, PCDRIVE was railing)
+
+came back, back to -15pm. IFO alignment: turned WFS gain to 0.005 to prevent oscillation.
+
+OMC alignment looks stable.
+what the hell coupling changed by 10db? (lower)
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-728.289
+8684.79
+40.2215
+575.417
+961731176
+
+turned on deacon align agian.
+
+now coupling is kind of back to old value?
+hf:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-732.009
+8683.57
+44.0424
+591.477
+961731543
+
+lf:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-729.07
+8685.73
+44.5877
+602.726
+961732203
+
+just found out that "ENVELOPE" in dtt only works when frequencies are increasing
+now -7"pm"
+hf:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-726.946
+8689.55
+9.84904
+599.489
+961732656
+
+lf/llf:
+ops@control2:06-27> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-731.432
+8689.57
+9.86807
+589.096
+961733748
+
+x0 = -27pm
+
+didn't avg :(

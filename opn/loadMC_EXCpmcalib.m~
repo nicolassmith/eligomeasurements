@@ -1,0 +1,13 @@
+% load calibration for excitation channel for oscillator phase noise
+% coupling
+
+SBint_TF = DTTloadTF('../oan/MC_1_EXCcal0.5dramp.txt'); % the magnitude is irrelevant, 
+                                                        %just the phase will let us 
+                                                        %remove the delay in this channel
+                                                        
+phi_Vpp = 0.0284 ; %taken from my SURF report this value is for 1kHz
+f_IFRcal = 1000; %the freq the above number applies to
+
+
+
+

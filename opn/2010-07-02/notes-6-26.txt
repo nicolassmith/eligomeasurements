@@ -1,0 +1,59 @@
+%notes for 6-26 OPN coupling
+
+SHOULD NOTE: the RF offsets looked rather large (10.5/1.15 arms for
+AS5) but the IFO locked before I could run offset script!
+
+x0 = 15pm 8W input 
+turned off UGF SERVO at ~450Hz
+hf:
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-732.88
+8677.91
+40.5875
+611.302
+961646065
+
+lf:
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-732.009
+8680.91
+40.6176
+607.021
+961646569
+
+x0 = 07pm 8Win
+turned off UGF servo at the beginning
+hf:
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-730.985
+8680.75
+8.92279
+601.36
+961646958
+
+lf: 
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-733.317
+8676.71
+8.94545
+598.798
+961647881
+
+llf:
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-733.483
+8676.82
+8.92167
+593.947
+961647990
+
+x0=27pm 8W input
+(DIDN'T TURN ON UGF SERVO)
+hf:
+ops@control2:06-26> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB ; tconvert now
+-731.223
+8680.74
+128.083
+590.255
+961648273
+

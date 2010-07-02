@@ -1,7 +1,7 @@
-% make oscillator amplitude noise plots.
+% make oscillator phase noise plots.
 
 load('../../DARMcalib.mat')
-load('../SBint_cal.mat')
+load('../phimod_cal.mat')
 
 clear dataStructure;
 
@@ -29,7 +29,7 @@ for kk = 1:length(offsets)
         end
     end
     
-    dataStructure(kk).fTF = calTF(tempTF,DARMcalib,SBint_cal);
+    dataStructure(kk).fTF = calTF(tempTF,DARMcalib,phimod_cal);
     dataStructure(kk).legend = [num2str(dataStructure(kk).offset*1e12) 'pm offset'];
 end
 
@@ -38,5 +38,5 @@ figure(121)
 SRSbode(dataStructure.fTF)
 legend(dataStructure.legend)
 
-title('measured oscillator amplitude noise coupling for DC readout')
-ylabel('m/Sideband RIN')
+title('measured oscillator phase noise coupling for DC readout')
+ylabel('m/radian')
