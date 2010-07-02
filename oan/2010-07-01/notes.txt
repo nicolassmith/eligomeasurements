@@ -1,0 +1,81 @@
+%oscillator amplitude noise for 6-28
+
+starting at x0=15"pm"
+
+hf,mf: (UGF servo got mad, turned it off for mf)
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-733.283
+8680.24
+39.4766
+526.068
+8.20102
+961810700
+
+lf:no avg :(
+
+x0 = 7pm
+gonna fix alignment
+before alignment at 2-5kHz ~-66dB raw.
+beacon didn't really help! go back to QPD
+still ~-66dB
+
+hf:
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-733.987
+8684.2
+8.23371
+471.269
+8.2069
+961812199
+
+x=27pm no avg crap
+
+centered WFS2
+x = -15pm
+hf:
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-729.258
+8689.18
+35.2685
+449.357
+8.21109
+961814279
+
+-7pm crap no avg (spob looks the same as above)
+
+tweaked wfs1 a little
+x0=-27pm
+hf-b:
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-727.4
+8686.66
+127.483
+476.555
+8.20762
+961816763
+
+coupling is different on PD1 and PD2!
+
+hf:
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-732.413
+8682.27
+126.894
+475.013
+8.20694
+961816970
+
+back to -15pm
+coupling on pd1pd2 is less different...
+hf-2:
+ops@control2:06-28> tdsavg 10 H1:PSL-ISS_OLMONPD_W H1:PSL-ISS_OLMONPD_NW H1:OMC-PD_SUM_OUT_DAQ H1:LSC-LA_NSPOB H1:IOO-MC_PWR_IN ; tconvert now
+-731.18
+8692.65
+41.465
+469.29
+8.20836
+961817772
+
+lost lock in the middle
+
+good enough for tonight

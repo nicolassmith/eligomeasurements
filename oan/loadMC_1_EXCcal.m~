@@ -1,0 +1,7 @@
+% loads calibration for excitation channel to sideband RIN
+
+SBint_TF = DTTloadTF('MC_1_EXCcal0.5dramp.txt');
+
+% now divide by the average power to get RIN
+
+SBint_cal = colmult(SB
