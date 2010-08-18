@@ -1,0 +1,5 @@
+02 - 33243nm 0.3Hz - more correct 3409e4nm
+03 - 24927nm 0.3Hz
+04 - 25626nm 0.5Hz
+05 - 32703nm 0.2Hz
+06 - 49590nm 0.2Hz

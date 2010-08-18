@@ -1,0 +1,14 @@
+% creates a scattering spectrum
+
+omega = 3;%Hz
+A = 20e-6;%m
+lambda = 1064e-9;%m
+fmax = 500;%Hz
+
+
+f = omega:omega:fmax;
+
+A = (besselj(f/,4*pi*A/lambda)).^2;
+
+
+loglog(f,A)

@@ -24,3 +24,5 @@ spec6_OL = applytfinterp(tfinv(CLG_DARM),spec6);
 spec5_OL = applytfinterp(tfinv(CLG_DARM),spec5);
 spec3_OL = applytfinterp(tfinv(CLG_DARM),spec3);
 
+SRSspec(baseline_OL,spec2_OL,spec4_OL,spec6_OL,spec5_OL,spec3_OL)
+legend('b','2','4','6','5','3')
