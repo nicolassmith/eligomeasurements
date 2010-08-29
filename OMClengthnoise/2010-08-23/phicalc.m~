@@ -1,0 +1,5 @@
+function phi = phicalc(n,seed)
+
+    phi = 1 + 1 / phical
+
+end
