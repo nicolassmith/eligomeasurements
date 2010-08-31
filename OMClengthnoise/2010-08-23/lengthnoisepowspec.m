@@ -22,12 +22,37 @@ meas4.lengthloop = DTTloadTF('04-lengthloop.txt');
 
 meas4cal = calibratelengthnoise(meas4);
 
+% meas 5 
+
+meas5.P_t = 7.49567;
+meas5.P_i = 378.026;
+meas5.rawPSD = DTTloadspec('05-pdsum.txt');
+meas5.lengthloop = DTTloadTF('05-lengthloop.txt');
+
+meas5cal = calibratelengthnoise(meas5);
+
+% am noise contribution
+
+nooff.P_t = 20.7104;
+nooff.P_i = 379.952;
+nooff.rawPSD = DTTloadspec('01-pdsum.txt');
+
+amnoise = meas2;
+amnoise.rawPSD = colmult(nooff.rawPSD,[1,meas2.P_t/nooff.P_t]); % scale RIN to equivalent of meas 2
+
+amnoisecal = calibratelengthnoise(amnoise);
+
+
 % figures
 figure(33)
-SRSspec(meas2cal.lengthnoisespectrum,meas4cal.lengthnoisespectrum)
+SRSspec(amnoisecal.lengthnoisespectrum,...
+        meas2cal.lengthnoisespectrum,...
+        meas4cal.lengthnoisespectrum,...
+        meas5cal.lengthnoisespectrum)
+    
 ylabel('m/rt(hz)')
 xlabel('Frequency (Hz)')
-xlim([50 8000])
+xlim([10 8000])
 ylim([3e-17 1e-13])
 
-legend('meas2','meas4')
+legend('AM noise','meas2','meas4','meas5')
