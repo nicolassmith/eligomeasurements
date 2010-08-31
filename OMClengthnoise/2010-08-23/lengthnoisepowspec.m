@@ -14,10 +14,20 @@ meas2.lengthloop = DTTloadTF('02-lengthloop.txt');
 
 meas2cal = calibratelengthnoise(meas2);
 
+% meas 4
+meas4.P_t = 4.00675;
+meas4.P_i = 376.832;
+meas4.rawPSD = DTTloadspec('04-pdsum.txt');
+meas4.lengthloop = DTTloadTF('04-lengthloop.txt');
+
+meas4cal = calibratelengthnoise(meas4);
+
 % figures
 figure(33)
-SRSspec(meas2cal.lengthnoisespectrum)
+SRSspec(meas2cal.lengthnoisespectrum,meas4cal.lengthnoisespectrum)
 ylabel('m/rt(hz)')
 xlabel('Frequency (Hz)')
 xlim([50 8000])
-ylim([1e-13 1e-9])
+ylim([3e-17 1e-13])
+
+legend('meas2','meas4')

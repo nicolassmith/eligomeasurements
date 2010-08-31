@@ -2,7 +2,7 @@ function strucout = calibratelengthnoise(strucin)
 
 
     Finesse = 370;
-    lambda = 1064e-6;
+    lambda = 1064e-9;
     P_t0 = 20.7104; %PDSUM
     P_i0 = 379.952; %QPD3SUM
 
@@ -14,7 +14,9 @@ function strucout = calibratelengthnoise(strucin)
     
     Ptrans = strucin.P_t ;
     
-    calcoefficient = Pin / Ptrans^2 / 4 * lambda / Finesse;
+    delta = sqrt(Pin/Ptrans - 1); %detuning
+    
+    calcoefficient = Pin / Ptrans^2 / (4 * Finesse) / (2 * delta) * lambda;
     
     calibratedspectrum = colmult(loopcorrectedspectrum,[1,calcoefficient]);
     
