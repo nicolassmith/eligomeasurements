@@ -1,0 +1,90 @@
+# 3
+>> data3 = get_data({'H1:OMC-QPD3_SUM_INMON','H1:OMC-PD_SUM_OUT16'},'raw',962581399,60);
+H
+H
+>> data3(1).name
+
+ans =
+
+H1:OMC-QPD3_SUM_INMON
+
+>> mean(data3(1).data)
+
+ans =
+
+   97.2520
+
+>> data3(2).name
+
+ans =
+
+H1:OMC-PD_SUM_OUT16
+
+>> data3(2).name
+
+ans =
+
+H1:OMC-PD_SUM_OUT16
+
+>> mean(data3(2).data)
+
+ans =
+
+    2.6202
+
+# 4
+>> data4 = get_data({'H1:OMC-QPD3_SUM_INMON','H1:OMC-PD_SUM_OUT16'},'raw',962581635,60);
+H
+H
+>> data4(1).name
+
+ans =
+
+H1:OMC-QPD3_SUM_INMON
+
+>> mean(data4(1).data)
+
+ans =
+
+   97.2248
+
+>> data4(2).name
+
+ans =
+
+H1:OMC-PD_SUM_OUT16
+
+>> mean(data4(2).data)
+
+ans =
+
+    2.6376
+
+# 5 
+>> data5 = get_data({'H1:OMC-QPD3_SUM_INMON','H1:OMC-PD_SUM_OUT16'},'raw',962581922,60);
+H
+H
+>> data5(1).name
+
+ans =
+
+H1:OMC-QPD3_SUM_INMON
+
+>> mean(data5(1).data)
+
+ans =
+
+   97.1630
+
+>> data5(2).name
+
+ans =
+
+H1:OMC-PD_SUM_OUT16
+
+>> mean(data5(2).data)
+
+ans =
+
+    2.6583
+
