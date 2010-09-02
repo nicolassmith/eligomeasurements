@@ -27,8 +27,8 @@ SRSspec(DARMnoinj,DARMinj)
 
 % make subtractions
 
-DARMex = [DARMnoinj(:,1),realsqrt(DARMinj(:,2).^2 - DARMnoinj(:,2).^2)]; % USE QUADSUBTRACT HERE
-PZTOUTex = [PZTOUTnoinj(:,1),realsqrt(PZTOUTinj(:,2).^2 - PZTOUTnoinj(:,2).^2)];
+DARMex = quadsubtract(DARMinj,DARMnoinj);%[DARMnoinj(:,1),realsqrt(DARMinj(:,2).^2 - DARMnoinj(:,2).^2)]; % USE QUADSUBTRACT HERE
+PZTOUTex = quadsubtract(PZTOUTinj,PZTOUTnoinj);%[PZTOUTnoinj(:,1),realsqrt(PZTOUTinj(:,2).^2 - PZTOUTnoinj(:,2).^2)];
 
 figure(44)
 subplot(2,1,1)
@@ -36,3 +36,9 @@ SRSspec(PZTOUTex)
 
 subplot(2,1,2)
 SRSspec(DARMex)
+
+darmpztratio = [DARMex(:,1),DARMex(:,2)./PZTOUTex(:,2)];
+
+figure(45)
+SRSspec(darmpztratio)
+ylabel('m[DARM]/ct[PZTOUT]')
