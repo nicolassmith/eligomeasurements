@@ -37,7 +37,7 @@ cd ../2010-09-01
 
 darmOMClengthnoise = applytfinterp(tfinv(OMClengthoverPZTOUT),applytfinterp(darmpztratio,meas5cal.lengthnoisespectrum));
 
-figure(22)
+figure(23)
 SRSspec(darmOMClengthnoise,DARMnoinj)
 
 ylabel('m/rt(Hz)')

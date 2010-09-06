@@ -6,6 +6,9 @@
 
 [PZTOUTinj,DARMinj] = DTTloadspec('08-biggerexcitation-pztlscout-darmerr.txt');
 
+PZTOUTinj2 = DTTloadspec('06-pztoutspec.txt');
+DARMinj2 = DTTloadspec('06-DARMspec.txt');
+
 % load DARM calibration
 
 load('../../DCnoisecouplings/DARMcalib.mat')
@@ -14,31 +17,35 @@ load('../../DCnoisecouplings/DARMcalib.mat')
 
 DARMnoinj = abs(calTF(DARMnoinj,DARMcalib));
 DARMinj = abs(calTF(DARMinj,DARMcalib));
+DARMinj2 = abs(calTF(DARMinj2,DARMcalib));
 
 % make plot
 
-figure(43)
+figure(63)
 
 subplot(2,1,1)
-SRSspec(PZTOUTnoinj,PZTOUTinj)
+SRSspec(PZTOUTnoinj,PZTOUTinj,PZTOUTinj2)
 
 subplot(2,1,2)
-SRSspec(DARMnoinj,DARMinj)
+SRSspec(DARMnoinj,DARMinj,DARMinj2)
 
 % make subtractions
 
-DARMex = quadsubtract(DARMinj,DARMnoinj);%[DARMnoinj(:,1),realsqrt(DARMinj(:,2).^2 - DARMnoinj(:,2).^2)]; % USE QUADSUBTRACT HERE
-PZTOUTex = quadsubtract(PZTOUTinj,PZTOUTnoinj);%[PZTOUTnoinj(:,1),realsqrt(PZTOUTinj(:,2).^2 - PZTOUTnoinj(:,2).^2)];
+DARMex = quadsubtract(DARMinj,DARMnoinj);
+PZTOUTex = quadsubtract(PZTOUTinj,PZTOUTnoinj);
+DARMex2 = quadsubtract(DARMinj2,DARMnoinj);
+PZTOUTex2 = quadsubtract(PZTOUTinj2,PZTOUTnoinj);
 
-figure(44)
+figure(64)
 subplot(2,1,1)
-SRSspec(PZTOUTex)
+SRSspec(PZTOUTex,PZTOUTex2)
 
 subplot(2,1,2)
-SRSspec(DARMex)
+SRSspec(DARMex,DARMex2)
 
 darmpztratio = [DARMex(:,1),DARMex(:,2)./PZTOUTex(:,2)];
+darmpztratio2 = [DARMex2(:,1),DARMex2(:,2)./PZTOUTex2(:,2)];
 
-figure(45)
-SRSspec(darmpztratio)
+figure(65)
+SRSspec(darmpztratio,darmpztratio2)
 ylabel('m[DARM]/ct[PZTOUT]')
