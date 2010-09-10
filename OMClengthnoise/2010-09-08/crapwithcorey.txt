@@ -1,0 +1,112 @@
+locked no offset
+
+ops@control2:OMC> tdsavg 10 H1:OMC-PD_SUM_OUT_DAQ H1:OMC-PZT_LSC_OUT16 H1:OMC-HTR_DRV_OUT16 H1:OMC-HTR_T_MON_OUT16 H1:OMC-PD_TRANS1_OUT_DAQ H1:OMC-PD_TRANS2_OUT_DAQ H1:OMC-QPD3_SUM_IN1_DAQ H1:IOO-MC_PWR_IN ; tconvert now 
+14.6244
+-13.6403
+-3899
+294.956
+6.9012
+7.73182
+373.043
+7.83864
+couldn't set locale correctly
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+967920523
+
+
+now locked with offset on short side (neg feedback)
+ops@control2:OMC> tdsavg 10 H1:OMC-PD_SUM_OUT_DAQ H1:OMC-PZT_LSC_OUT16 H1:OMC-HTR_DRV_OUT16 H1:OMC-HTR_T_MON_OUT16 H1:OMC-PD_TRANS1_OUT_DAQ H1:OMC-PD_TRANS2_OUT_DAQ H1:OMC-QPD3_SUM_IN1_DAQ H1:IOO-MC_PWR_IN ; tconvert now
+3.99735
+-7.91891
+-3904.57
+294.98
+1.88555
+2.11418
+359.389
+7.83715
+couldn't set locale correctly
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+967920622
+
+
+taking nicsoffsetfile.txt
+
+nicolas home directory nicsoffsetfile2.txt
+
+
+
+all fucked before
+
+no offset
+ops@control2:~> tdsavg 10 H1:OMC-PD_SUM_OUT_DAQ H1:OMC-PZT_LSC_OUT16 H1:OMC-HTR_DRV_OUT16 H1:OMC-HTR_T_MON_OUT16 H1:OMC-PD_TRANS1_OUT_DAQ H1:OMC-PD_TRANS2_OUT_DAQ H1:OMC-QPD3_SUM_IN1_DAQ H1:IOO-MC_PWR_IN ; tconvert now
+14.684
+0.393133
+-3783.41
+295.069
+6.92919
+7.76345
+373.246
+7.83302
+couldn't set locale correctly
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+967924479
+
+
+with offset
+ops@control2:~> tdsavg 10 H1:OMC-PD_SUM_OUT_DAQ H1:OMC-PZT_LSC_OUT16 H1:OMC-HTR_DRV_OUT16 H1:OMC-HTR_T_MON_OUT16 H1:OMC-PD_TRANS1_OUT_DAQ H1:OMC-PD_TRANS2_OUT_DAQ H1:OMC-QPD3_SUM_IN1_DAQ H1:IOO-MC_PWR_IN ; tconvert now
+1.99881
+7.72036
+-3809.11
+295.046
+0.942413
+1.05759
+356.746
+7.83411
+couldn't set locale correctly
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+967924768
+
+now taking DTT time series
+
+several offsets on short side (neg feedback)
+
+2, 5, 9 mA sum.
+
+9mA offset averages
+ops@control2:~> tdsavg 10 H1:OMC-PD_SUM_OUT_DAQ H1:OMC-PZT_LSC_OUT16 H1:OMC-HTR_DRV_OUT16 H1:OMC-HTR_T_MON_OUT16 H1:OMC-PD_TRANS1_OUT_DAQ H1:OMC-PD_TRANS2_OUT_DAQ H1:OMC-QPD3_SUM_IN1_DAQ H1:IOO-MC_PWR_IN ; tconvert now
+8.99553
+0.448312
+-3790.5
+295.047
+4.27495
+4.72526
+363.818
+7.82895
+couldn't set locale correctly
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+        LC_ALL = (unset),
+        LANG = "en_US.UTF-8"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
+967925208
