@@ -1,0 +1,13 @@
+% what is the transfer function?
+
+hz_mod_data = [abs(hz_mod_atfcal1),abs(hz_mod_atfcal2),abs(hz_mod_atfcal3)];
+
+fcal = [f_cal1,f_cal2,f_cal3];
+
+
+fitparams = 
+
+plot(fcal,hz_mod_data,'r*')
+
+xlim([0 2200])
+ylim([0 6e-3])

@@ -9,7 +9,6 @@ run ../2010-06-05/freqPlot.m
 close(121)
 close(122)
 
-
 dataStructure = [dataStructure,dataStructure1];
 
 figure(121)

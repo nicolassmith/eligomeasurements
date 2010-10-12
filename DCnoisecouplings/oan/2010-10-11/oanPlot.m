@@ -1,7 +1,7 @@
-% make ISS plots.
+% make oscillator amplitude noise plots.
 
 load('../../DARMcalib.mat')
-load('../REFL2RBcalib_07_07.mat')
+load('../SBint_cal.mat')
 
 clear dataStructure;
 
@@ -19,6 +19,7 @@ for kk = 1:length(offsets)
     
     dataStructure(kk).offset = offsets(kk)*1e-12*offsetCalib;
     dataStructure(kk).filenames = {['x0' offstring 'pm8Wlf.txt'],...
+                                   ['x0' offstring 'pm8Wmf.txt'],...
                                    ['x0' offstring 'pm8Whf.txt']};
     
     tempTF = [];                           
@@ -28,18 +29,14 @@ for kk = 1:length(offsets)
         end
     end
     
-    f_data = tempTF(:,1);
-    meanmodcal = mean([hz_mod_atfcal1/f_cal1  hz_mod_atfcal2/f_cal2  hz_mod_atfcal3/f_cal3]);
-    MODcalib = [f_data , (1i * f_data)*meanmodcal];
-    
-    dataStructure(kk).fTF = calTF(tempTF,DARMcalib,MODcalib);
+    dataStructure(kk).fTF = calTF(tempTF,DARMcalib,SBint_cal);
     dataStructure(kk).legend = [num2str(dataStructure(kk).offset*1e12) 'pm offset'];
 end
 
 
-figure(142)
+figure(120)
 SRSbode(dataStructure.fTF)
 legend(dataStructure.legend)
 
-title('measured frequency noise coupling for DC readout')
-ylabel('m/Hz')
+title('measured oscillator amplitude noise coupling for DC readout')
+ylabel('m/Sideband RIN')
