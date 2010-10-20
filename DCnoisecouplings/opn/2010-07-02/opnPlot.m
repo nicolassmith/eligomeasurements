@@ -34,7 +34,7 @@ for kk = 1:length(offsets)
 end
 
 
-figure(121)
+figure(122)
 SRSbode(dataStructure.fTF)
 legend(dataStructure.legend)
 
