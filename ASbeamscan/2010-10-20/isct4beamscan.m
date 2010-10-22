@@ -1,4 +1,4 @@
-% beam scan fit for isct4 scan data (Oct 28 2010)
+% beam scan fit for isct4 scan data (Oct 18 2010)
 
 m_in = 0.0254; % meters per inch
 m_um = 1e-6;
