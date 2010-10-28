@@ -1,4 +1,4 @@
-% beam scan fit for isct4 scan data (Oct 28 2010)
+% beam scan fit for isct4 scan data (Oct 18 2010)
 
 m_in = 0.0254; % meters per inch
 m_um = 1e-6;
@@ -38,7 +38,7 @@ scanAS.A2 = [6680.5 6589.4 6302.2 6138.0 5917.2 5708.9 5474.6 5304.6...
 
 % We need a starting point to try to fit the beam to
 initialPath = beamPath;
-initialPath.seedWaist(.05e-3,1);
+initialPath.seedWaist(1e-4,.95);
 
 
 % now fit beam to data
@@ -52,21 +52,26 @@ scanAS.vertpath = initialPath.fitBeamWidth(scanAS.pos*m_in,scanAS.A2*m_um/2);
 
 % plots
 
-plotdomain = 0:.1:1.4;
+plotdomain = 0:.01:1.4;
 
 figure(756)
+clf
 hold on
 plot(scanITMY.pos*m_in,scanITMY.A1*m_um/2,'r^')
 plot(scanITMY.pos*m_in,scanITMY.A2*m_um/2,'rv')
-plot(scanITMX.pos*m_in,scanITMY.A1*m_um/2,'b^')
-plot(scanITMX.pos*m_in,scanITMY.A2*m_um/2,'bv')
-plot(scanAS.pos*m_in,scanITMY.A1*m_um/2,'g^')
-plot(scanAS.pos*m_in,scanITMY.A2*m_um/2,'gv')
+plot(scanITMX.pos*m_in,scanITMX.A1*m_um/2,'b^')
+plot(scanITMX.pos*m_in,scanITMX.A2*m_um/2,'bv')
+plot(scanAS.pos*m_in,scanAS.A1*m_um/2,'g^')
+plot(scanAS.pos*m_in,scanAS.A2*m_um/2,'gv')
 
 scanITMY.horzpath.plotBeamWidth(plotdomain,'r--')
 scanITMY.vertpath.plotBeamWidth(plotdomain,'r-.')
 scanITMX.horzpath.plotBeamWidth(plotdomain,'b--')
 scanITMX.vertpath.plotBeamWidth(plotdomain,'b-.')
 scanAS.horzpath.plotBeamWidth(plotdomain,'g--')
-scanITMY.vertpath.plotBeamWidth(plotdomain,'g-.')
+scanAS.vertpath.plotBeamWidth(plotdomain,'g-.')
+
+legend('IY H','IY V','IX H','IY V','AS H','AS V')
+title('ISCT4 beamscan')
+
 hold off

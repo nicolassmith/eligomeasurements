@@ -76,4 +76,10 @@ scanITMX.horzpath.plotBeamWidth(plotdomain,'b--')
 scanITMX.vertpath.plotBeamWidth(plotdomain,'b-.')
 scanAS.horzpath.plotBeamWidth(plotdomain,'g--')
 scanAS.vertpath.plotBeamWidth(plotdomain,'g-.')
+
+legend('IY H','IY V','IX H','IY V','AS H','AS V','Location','E')
+title('OMC REFL beamscan')
+ylabel('Beam Width (m)')
+xlabel('Beam Axis (m)')
+
 hold off
