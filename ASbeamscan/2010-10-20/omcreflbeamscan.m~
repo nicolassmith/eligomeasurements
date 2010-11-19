@@ -3,6 +3,13 @@
 m_in = 0.0254; % meters per inch
 m_um = 1e-6;
 
+% distance from 0 on beam scan to OMC input mirror
+
+originshift = (-1.5+6+21+6+4.25) + 24.6 + (2.8+10+23+7) ;
+            % ^from 0 to viewport
+            %                      ^from viewport to ISI edge
+            %                             ^ from edge of isi to omc input
+
 % same for ITMX single bounce "trial 1"
 
 scanITMX.pos = 0:20; % 1 inch spaced measurements, 0 to 20 inches.
@@ -35,30 +42,30 @@ scanAS.pos = 0:20;
 
 scanAS.A1 = [3796.6 3825.4 3835.0 3866.6 3885.4 3890.8 3921.8 3933.3...
     3952.4 3974.2 3988.3 4005.1 4029.0 4063.1 4052.8 4070.8 4082.6...
-    4099.3 4115.4];
+    4099.3 4115.4 4135.5 4146.9];
 
 scanAS.A2 = [4041.8 4130.5 4122.9 4232.0 4264.1 4207.6 4285.6 4311.4...
     4365.3 4412.0 4448.0 4451.1 4455.5 4470.9 4496.5 4557.4 4628.9...
-    4609.7 4643.8];
+    4609.7 4643.8 4790.6 4727.9];
          
 
 % We need a starting point to try to fit the beam to
 initialPath = beamPath;
-initialPath.seedWaist(5e-4,-2);
+initialPath.seedWaist(5e-4,-4+originshift*m_in);
 
 
 % now fit beam to data
-scanITMY.horzpath = initialPath.fitBeamWidth(scanITMY.pos*m_in,scanITMY.A1*m_um/2);
-scanITMY.vertpath = initialPath.fitBeamWidth(scanITMY.pos*m_in,scanITMY.A2*m_um/2);
-scanITMX.horzpath = initialPath.fitBeamWidth(scanITMX.pos*m_in,scanITMX.A1*m_um/2);
-scanITMX.vertpath = initialPath.fitBeamWidth(scanITMX.pos*m_in,scanITMX.A2*m_um/2);
-scanAS.horzpath = initialPath.fitBeamWidth(scanAS.pos*m_in,scanAS.A1*m_um/2);
-scanAS.vertpath = initialPath.fitBeamWidth(scanAS.pos*m_in,scanAS.A2*m_um/2);
+scanITMY.horzpath = initialPath.fitBeamWidth((scanITMY.pos*m_in,scanITMY.A1*m_um/2);
+scanITMY.vertpath = initialPath.fitBeamWidth((scanITMY.pos*m_in,scanITMY.A2*m_um/2);
+scanITMX.horzpath = initialPath.fitBeamWidth((scanITMX.pos+originshift)*m_in,scanITMX.A1*m_um/2);
+scanITMX.vertpath = initialPath.fitBeamWidth((scanITMX.pos+originshift)*m_in,scanITMX.A2*m_um/2);
+scanAS.horzpath = initialPath.fitBeamWidth((scanAS.pos+originshift)*m_in,scanAS.A1*m_um/2);
+scanAS.vertpath = initialPath.fitBeamWidth((scanAS.pos+originshift)*m_in,scanAS.A2*m_um/2);
 
 
 % plots
 
-plotdomain = 0:.01:1.4;
+plotdomain = -5:.01:1;
 
 figure(757)
 clf
@@ -76,4 +83,10 @@ scanITMX.horzpath.plotBeamWidth(plotdomain,'b--')
 scanITMX.vertpath.plotBeamWidth(plotdomain,'b-.')
 scanAS.horzpath.plotBeamWidth(plotdomain,'g--')
 scanAS.vertpath.plotBeamWidth(plotdomain,'g-.')
+
+legend('IY H','IY V','IX H','IY V','AS H','AS V','Location','E')
+title('OMC REFL beamscan')
+ylabel('Beam Width (m)')
+xlabel('Beam Axis (m)')
+
 hold off

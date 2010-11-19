@@ -2,10 +2,18 @@
 
 m_in = 0.0254; % meters per inch
 m_um = 1e-6;
+w_omc=4.96e-4;
+
+% distance from 0 on beam scan to OMC input mirror
+
+originshift = (-1.5+6+21+6+4.25) + 24.6 + (2.8+10+23+7) ;
+            % ^from 0 to viewport
+            %                      ^from viewport to ISI edge
+            %                             ^ from edge of isi to omc input
 
 % same for ITMX single bounce "trial 1"
 
-scanITMX.pos = 0:20; % 1 inch spaced measurements, 0 to 20 inches.
+scanITMX.pos = (0:20)+originshift; % 1 inch spaced measurements, 0 to 20 inches.
 
 % scan data A1 is horizontal. Units are um diameter beam width
 scanITMX.A1 = [4156.0 4178.7 4200.5 4224.5 4251.1 4283.5 4331.1 4347.8...
@@ -18,7 +26,7 @@ scanITMX.A2 = [4219.3 4226.2 4270.3 4310.3 4360.0 4382.7 4415.4 4489.8...
 
 % first ITMY single bounce "trial 2"
 
-scanITMY.pos = 0:20;
+scanITMY.pos = (0:20)+originshift;
 
 % scan data 
 scanITMY.A1  = [4369.7 4390.7 4408.8 4429.8 4452.8 4489.6 4513.2 4531.6...
@@ -31,7 +39,7 @@ scanITMY.A2  = [4258.1 4313.3 4360.5 4389.6 4424.1 4500.7 4529.6 4558.7...
            
 % finally, IFO AS port with DARM offset "trial 3"
 
-scanAS.pos = 0:20;
+scanAS.pos = (0:20)+originshift;
 
 scanAS.A1 = [3796.6 3825.4 3835.0 3866.6 3885.4 3890.8 3921.8 3933.3...
     3952.4 3974.2 3988.3 4005.1 4029.0 4063.1 4052.8 4070.8 4082.6...
@@ -44,7 +52,33 @@ scanAS.A2 = [4041.8 4130.5 4122.9 4232.0 4264.1 4207.6 4285.6 4311.4...
 
 % We need a starting point to try to fit the beam to
 initialPath = beamPath;
-initialPath.seedWaist(5e-4,-4);
+initialPath.seedWaist(5e-4,-4+originshift*m_in);
+initialPath.targetWaist(w_omc,0)
+
+% add components
+
+% TT distances are all Zemaxed
+OMC2TT2=.3510;%0.27;
+TT1_TT2=1.84;
+TT0_TT1=.76;
+
+TT2 = component.curvedMirror(2,-OMC2TT2,'TT2');
+TT1 = component.curvedMirror(-0.5,-OMC2TT2-TT1_TT2,'TT1');
+TT0 = component.curvedMirror(2,-OMC2TT2-TT1_TT2-TT0_TT1,'TT0');
+
+% BRT components
+ROT1=3.048;
+ROT2=-0.381;
+
+OBS_TT0 = 15.3; % not sure, but it should be close enough.
+OT2_OBS=1;
+OT1_OT2=1.3335;
+
+OBS = component.flatMirror(TT0.z-OBS_TT0,'OBS');
+BRT2 = component.curvedMirror(ROT2,OBS.z-OT2_OBS,'BRT2');
+BRT1 = component.curvedMirror(ROT1,BRT2.z-OT1_OT2,'BRT1');
+
+initialPath.addComponent([TT0,TT1,TT2,OBS,BRT2,BRT1]);
 
 
 % now fit beam to data
@@ -58,7 +92,7 @@ scanAS.vertpath = initialPath.fitBeamWidth(scanAS.pos*m_in,scanAS.A2*m_um/2);
 
 % plots
 
-plotdomain = -5:.01:1;
+plotdomain = -25:.01:4;
 
 figure(757)
 clf
