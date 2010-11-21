@@ -6,11 +6,11 @@ PDSUM = DTTloadspec('01-highfreqOMCpdspec-PDSUM.txt');
 
 DARM = DTTloadspec('besth1noise.txt');
 
-SRSspec(QPD3P,QPD3Y,QPD4P,QPD4Y)
+%SRSspec(QPD3P,QPD3Y,QPD4P,QPD4Y)
 
 specCell = {QPD3P,QPD3Y,QPD4P,QPD4Y};
 
-legend('3p','3y','4p','4y')
+%legend('3p','3y','4p','4y')
 
 TTnames = {'P1','Y1','P2','Y2'};
 TTfreqs = [1.1,0.9,3.5,3.2];
@@ -77,14 +77,34 @@ end
 
 display(calintdata)
 
+% cobine the data
+
+for TT = ['1','2']
+    for TTd = ['P','Y']
+%         for QPD = ['3','4']
+%             for QPDd = ['P','Y']
+%                 
+%             end
+%         end
+        avgQPDP = mean([calintdata.([TTd TT '_QPD3P']) calintdata.([TTd TT '_QPD4P'])]);
+        avgQPDY = mean([calintdata.([TTd TT '_QPD3Y']) calintdata.([TTd TT '_QPD4Y'])]);
+        
+        calcombined.(['TT' TT TTd]) = sqrt(avgQPDP^2 + avgQPDY^2);
+    end
+end
+
+display(calcombined)
+
 % now we're gonna get the drumhead amplitude
 
 fDrum = 9225;
-fCalLine = 1144.1;
+fCalLine = 1144.3;
 fwindow = 1;
 
-DrumRIN = intASD(PDSUM,fDrum-fwindow,fDrum+fwindow);
-CalRIN = intASD(PDSUM,fCalLine-fwindow,fCalLine+fwindow);
+PDSUMavg = intASD(PDSUM);
+
+DrumRIN = intASD(PDSUM,fDrum-fwindow,fDrum+fwindow)/PDSUMavg; 
+CalRIN = intASD(PDSUM,fCalLine-fwindow,fCalLine+fwindow)/PDSUMavg;
 
 CalDARM = intASD(DARM,fCalLine-fwindow,fCalLine+fwindow);
 
