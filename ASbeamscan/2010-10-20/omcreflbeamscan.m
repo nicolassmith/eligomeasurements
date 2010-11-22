@@ -52,7 +52,7 @@ scanAS.A2 = [4041.8 4130.5 4122.9 4232.0 4264.1 4207.6 4285.6 4311.4...
 
 % We need a starting point to try to fit the beam to
 initialPath = beamPath;
-initialPath.seedWaist(5e-4,-4+originshift*m_in);
+initialPath.seedWaist(5e-4,0);%-2+originshift*m_in);
 initialPath.targetWaist(w_omc,0)
 
 % add components
@@ -94,7 +94,7 @@ scanAS.vertpath = initialPath.fitBeamWidth(scanAS.pos*m_in,scanAS.A2*m_um/2);
 
 plotdomain = -25:.01:4;
 
-figure(757)
+figure(786)
 clf
 hold on
 plot(scanITMY.pos*m_in,scanITMY.A1*m_um/2,'r^')
