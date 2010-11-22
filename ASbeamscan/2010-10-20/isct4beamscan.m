@@ -43,7 +43,7 @@ scanAS.A2 = [6680.5 6589.4 6302.2 6138.0 5917.2 5708.9 5474.6 5304.6...
 % We need a starting point to try to fit the beam to
 initialPath = beamPath;
 initialPath.seedWaist(.5e-3,6.3);%.8+originshift*m_in);
-initialPath.addComponent(component.lens(1,(-12+originshift)*m_in,'ISCT4 Lens'));
+initialPath.addComponent(component.lens(1.1456,(-12+originshift)*m_in,'ISCT4 Lens'));
 
 
 

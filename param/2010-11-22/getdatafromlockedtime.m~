@@ -1,0 +1,19 @@
+% take a bunch of data from a good locked time.
+
+
+tgood = 971396235;
+
+duration = 15*60; %15 minutes of data.
+
+% channels
+
+statechannels = {'H1:DMT-SNSM_RANGE_1MINAVG'};
+
+readoutchannels = {'H1:LSC-DARM_ERR','H1:OMC-PD_SUM_OUT_DAQ',...
+    'H1:OMC-PD_TRANS1_OUT_DAQ','H1:OMC-PD_TRANS2_OUT_DAQ'};
+
+omcalignchannels = {'H1:OMC-QPD3_P_OUT_DAQ''H1:OMC-QPD3_P_OUT_DAQ','H1:OMC-QPD3_Y_OUT_DAQ','H1:OMC-QPD3_SUM_IN1_DAQ',...
+    'H1:OMC-QPD4_P_OUT_DAQ''H1:OMC-QPD4_P_OUT_DAQ','H1:OMC-QPD4_Y_OUT_DAQ','H1:OMC-QPD4_SUM_IN1_DAQ',...
+    'H1:OMC-QPD1_P_OUT_DAQ''H1:OMC-QPD1_P_OUT_DAQ','H1:OMC-QPD1_Y_OUT_DAQ','H1:OMC-QPD1_SUM_IN1_DAQ',...
+    'H1:OMC-QPD2_P_OUT_DAQ''H1:OMC-QPD2_P_OUT_DAQ','H1:OMC-QPD2_Y_OUT_DAQ','H1:OMC-QPD2_SUM_IN1_DAQ'};
+                    
