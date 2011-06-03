@@ -1,0 +1,176 @@
+===============================================================================
+
+This was an attempt to measure how much the OMC back-scatters into the
+interferometer mode.  It was done by wiggling the OMC-SUS and
+observing the scattering shelf in the PD spectrum.
+
+Files:
+
+OMCscatter2.xml	-> OMCscatter2.txt
+  - .txt contains spectra of DARM background and two scattering trials
+OMCscatter.xml
+  - don't remember
+OMCtimeseries.txt
+  - plain OMC timeseries
+
+Note: the original analysis (in the elog entry, appended below) is
+wrong by a factor of a few, since it does not account for suppression
+by the DARM loop.  Valera's entry in the elog is also missing a factor
+of the optical gain (which is big).
+
+Sorry the .m files are a big disorganized.
+
+-- T.F.
+
+===============================================================================
+TEXT OF ELOG ENTRY 
+===============================================================================
+
+A moving object that scatters light back at the interferometer creates
+a very characteristic "scattering shelf" signature in the spectrum
+seen by a PD.  As the scattering source moves, it phase modulates the
+light it reflects.  This phase modulation beats against the carrier
+and and audio frequency amplitude noise to make the shelf. 
+
+How this works is already well-known, but I decided to write it down
+for myself:
+
+The scattered beam has an electric field amplitude of
+
+E_s = a E_0 exp{ i (2 A / lambda) (2 pi) sin Omega t }
+
+where A is the amplitude of motion of the scatterer, Omega is the
+frequency of motion, and a is the amplitude reflectivity of the
+scattering source (the scattering coefficient).  This is phase
+modulation with a modulation depth of
+
+Gamma = 4 pi (A/lambda)
+
+(for normal incidence on the scatterer)
+
+The photodiode sees
+
+P = |E_t + E_s|^2 
+
+P = |E_t|^2 + |E_s|^2 + 2 Re E_t E_s
+
+P = |E_0|^2 + 2 Re E_t E_s
+
+where E_t = (1 - a) E_0 is the field that's transmitted rather than scattered.
+
+Using the Jacobi-Anger identity, E_s can be expanded in terms of
+sinusoids to find the power spectrum of the photodiode signal:
+
+P = |E_0|^2 + 2 Re (E_s) (E_t)* Sum[ i^n J_n(Gamma) exp{i n Omega t} ]
+ 
+P = |E_0|^2 + 2 |E_0|^2 a (1 - a) Re Sum[ i^n J_n(Gamma) exp{i n Omega t} ]
+
+There are terms (sidebands) at all multiples of the phase modulation
+frequency Omega.  Spectrally, this looks like a comb of delta
+functions at integer multiples of Omega, whose amplitudes are given by
+bessel functions J_N(Gamma), where N=f/Omega.  (Any AM noise on the
+carrier will get superimposed on each of these spikes, smoothing out
+the spectrum.)
+
+It turns out that the amplitude of Bessel functions J_N(Gamma) dies
+off very steeply with N after N>Gamma, which is what creates the sharp
+cutoff of the "scattering shelf".  Using N_knee = Gamma gives:
+
+f_knee = Omega * N_knee = Omega Gamma = 4 pi Omega (A / lambda)
+
+Another way of seeing this is to consider the phase induced by the scattering source:
+
+phi = Gamma sin Omega t
+f_instantaneous = d phi/dt = Omega Gamma sin Omega t
+f_instantaneous_max = Omega Gamma
+
+which gets the same result.  Furthermore, an excitation of amplitude A
+and frequency Omega has maximum velocity v = A Omega.  This can be
+used to eliminate both A and Omega from the knee frequency:
+
+f_knee = 4 pi (v / lambda)
+
+(At this point, Mike Z admonishes, "Speed kills!")
+
+Because Sum[ J_N(Gamma)^2 ] over all N equals 1, we can integrate the
+power spectrum of the photodiode signal to directly measure 
+2 |E_0|^2 a (1 - a).  We can then divide by the DC term to get the
+scattering coefficient.
+
+
+
+On Friday evening Valera and I wiggled the HAM6 ISI table to measure
+scattering of light from HAM6 back into the interferometer (which in
+turn reflects off the interferometer and comes back at the DC readout
+photodiode).  Using the ISI for this is especially convenient because
+our seismic friends have conscientiously calibrated their position
+sensors in real units.
+               
+-Excitations-
+
+We performed three excitations into L1:ISI-OMC_CONT_Y_EXC.  With the
+isolation filter banks turned off at their inputs and all of the
+filter modules turned off this excitation channel allows us to
+directly excite the (uncontrolled) ISI table in the Y direction.  The
+Y direction in ISI land cleverly corresponds to the axis of the Y arm,
+i.e. we excited along the axis between HAM6 and the IFO beamsplitter.
+
+GPS time    Duration     Amplitude
+916817615   180 seconds  excitation = 16.5 microns amplitude at 0.3 Hz
+916817805   430 seconds  excitation = 33.0 microns amplitude at 0.3 Hz
+916818335                excitation = none
+
+The excitation amplitudes were 1000 and 2000 counts, which we observed
+to correspond to 16.5 and 33.0 microns via the ISI sensor channel
+L1:ISI-OMC_CONT_Y_IN1.
+
+-Resulting spectral shelves-
+
+With these excitation amplitudes we saw a clear scattering shelf in the
+DARM spectrum.   Looking at the shelf, the knee frequencies of the shelf
+in the two exictations are at about 57 Hz and 108 Hz.
+
+Using the expression 
+
+<b>f_knee = 4 pi Omega (A / lambda)</b>
+
+with
+
+A      = 15.6 and 33.0 microns (excitation amplitude)
+Omega  = 0.3 Hz                (excitation frequency)
+lambda = 1064 nanometers       (laser wavelength)
+
+gives predicted knee frequencies of 58.5 Hz and 117 Hz.  Remarkably
+good agreement, I'd say!
+ 
+-Estimating the scattering coefficient-
+
+Integrating the area between the scattering shelf and the baseline
+spectrum (of OMC-READOUT_OUT) gives the following values for the two
+excitations:
+
+a_rms = 0.067965   counts RMS for the 16 micron excitation
+b_rms = 0.10882    counts RMS for the 33 micron excitation
+
+(I think these quantities are supposed to be equal.  They were computed
+as Sqrt[0.25 Hz * Sum[Y^2 - X^2]] where Y is the elevated spectrum ASD,
+X is the baseline one, and 0.25 Hz was the binwidth.)
+
+We have to undo the effect of the OMC_READOUT filter bank, which just
+adds an offset and a gain:
+
+OMC_READOUT_GAIN   was -73.245 
+OMC_READOUT_OFFSET was -71.276
+
+So the DC power on the OMC was -OMC_READOUT_OFFSET = 71.276 mA, and
+the RMS scattered light was
+
+a_rms / OMC_READOUT_GAIN = 1.0e-3 mA RMS scattering
+b_rms / OMC_READOUT_GAIN = 1.5e-3 mA RMS scattering
+
+Dividing by the DC value gives
+
+alpha = 14e-6  (first excitation)
+alpha = 21e-6  (second excitation)
+
+===============================================================================
