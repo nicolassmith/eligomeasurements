@@ -1,0 +1,22 @@
+===============================================================================
+ELOG ENTRY - http://goo.gl/J45pI		                   2010-04-19
+===============================================================================
+Tobin, Kate, Steve Penn
+
+From 4pm-9:30pm in astrowatch mode; from 9:30pm to midnight making
+measurements of intensity noise transfer function to DARM, MICH, PRC,
+REFL, etc.
+
+The ISS to DARM transfer functions look quite different from when I
+did similar measurements in January. If the dominant intensity noise
+coupling is through the RF sidebands, perhaps this is not surprising.
+
+From 11:30pm until 11:50pm we were locked on the other side of the
+DARM fringe (x0=-15pm). I wanted to make the transfer function
+measurements with various negative DARM offsets but didn't have time
+to actually take any transfer functions here. I was tripped up by a
+second place in the l1_rf2dc script that resets the DARM offset back
+to the positive value, which of course was blowing the locks. I
+commented this out since it is redundant.
+
+===============================================================================
