@@ -1,0 +1,16 @@
+
+
+Ref 0, 1 - standard  x0 = 15pm
+
+Ref 2, 3 -  x0 = 25pm, pd_sum = 90 mA
+
+Ref 4, 5 -  x0 = 7.5pm, pd_sum = 9.1 mA
+
+Ref 6, 7 -  same IFO config again (x0=7.5)
+
+Ref 8, 9 -  x0 = 5pm, pd_sum = 4.1 mA
+
+Ref 10, 11 - x0 = 10pm
+
+Ref 12, 13 : x0 = 15 pm again (35.7 mA)
+
