@@ -1,9 +1,6 @@
 
 %% Load the DARM calibration
-temp = textread('/data/dtt/tf/notebook/2010/01/darm-calib.txt', '', 'commentstyle', 'shell');
-f_DarmCalib = temp(:,1);
-DarmCalib = 10.^(temp(:,2)/20) .* exp(1i*temp(:,3)*pi/180);
-clear temp;
+[f_DarmCalib, DarmCalib] = get_darm_calib('L1', 962679241, []);
 
 %% Load the oscillator AM calibration
 temp = dlmread('../06/OSCAM_SBSB_amp=1.4142.txt');
