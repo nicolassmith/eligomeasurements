@@ -1,0 +1,7 @@
+===============================================================================
+Oscillator Amplitude Noise test - elog: http://goo.gl/bpWfP
+
+To check the calibration of the Marconi's AM drive, on 7/6 I locked the OMC to 
+the 24 MHz RF sideband in a single bounce configuration and took a swept-sine 
+from the Marconi excitation to OMC PD-SUM. The coupling level of sideband RIN 
+per AM modulation depth agrees with expectation.
