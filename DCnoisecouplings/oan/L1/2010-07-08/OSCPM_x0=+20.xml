@@ -1,0 +1,1258 @@
+<?xml version="1.0"?>
+<!DOCTYPE LIGO_LW [
+<!ELEMENT LIGO_LW ((LIGO_LW|Comment|Param|Time|Table|Array|Stream)*)>
+<!ATTLIST LIGO_LW Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Comment (#PCDATA)>
+<!ELEMENT Param (#PCDATA)>
+<!ATTLIST Param Name CDATA #IMPLIED Type CDATA #IMPLIED Dim CDATA #IMPLIED
+                Unit CDATA #IMPLIED>
+<!ELEMENT Table (Comment?,Column*,Stream?)>
+<!ATTLIST Table Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Column EMPTY>
+<!ATTLIST Column Name CDATA #IMPLIED Type CDATA #IMPLIED Unit CDATA #IMPLIED>
+<!ELEMENT Array (Dim*,Stream?)>
+<!ATTLIST Array Name CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Dim (#PCDATA)>
+<!ATTLIST Dim Name CDATA #IMPLIED>
+<!ELEMENT Stream (#PCDATA)>
+<!ATTLIST Stream Name CDATA #IMPLIED Type (Remote|Local) "Local"
+          Delimiter CDATA "," Encoding CDATA #IMPLIED Content CDATA #IMPLIED>
+<!ELEMENT Time (#PCDATA)>
+<!ATTLIST Time Name CDATA #IMPLIED Type (GPS|Unix|ISO-8601) "ISO-8601">
+]>
+<LIGO_LW Name="Diagnostics Test">
+  <LIGO_LW Name="Header" Type="Global">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Creator" Type="string">Diagnostics system</Param>
+    <Param Name="TestType" Type="string">SweptSine</Param>
+    <Param Name="TestName" Type="string">1998-2001, by Daniel Sigg</Param>
+    <Param Name="Supervisory" Type="string">Standard</Param>
+    <Param Name="TestIterator" Type="string">Repeat</Param>
+    <Time Name="TestTime" Type="GPS">962668789.0</Time>
+    <Time Name="TestTimeUTC" Type="ISO-8601">2010-07-08 23:59:35</Time>
+    <Param Name="InputSource" Type="string">online</Param>
+    <Param Name="Comment" Type="string"></Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Def" Type="Defaults">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="AllowCancel" Type="boolean">true</Param>
+    <Param Name="NoStimulus" Type="boolean">false</Param>
+    <Param Name="NoAnalysis" Type="boolean">false</Param>
+    <Param Name="KeepTraces" Type="int">100</Param>
+    <Param Name="SiteDefault" Type="byte">.</Param>
+    <Param Name="SiteForce" Type="byte"> </Param>
+    <Param Name="IfoDefault" Type="byte"> </Param>
+    <Param Name="IfoForce" Type="byte"> </Param>
+    <Param Name="Reconnect" Type="boolean">false</Param>
+    <Param Name="PlotWindowLayout[1]" Type="int">4</Param>
+    <Param Name="PlotWindows" Type="int">1</Param>
+    <Param Name="CalibrationRecords" Type="int">0</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Find" Type="Optimization">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Enable" Type="boolean">true</Param>
+    <Param Name="Change" Type="boolean">true</Param>
+    <Param Name="Type" Type="int">0</Param>
+    <Param Name="Value" Type="double">0</Param>
+    <Param Name="Function" Type="int">0</Param>
+    <Param Name="Param" Type="double" Dim="2">0	100</Param>
+    <Param Name="Method" Type="int">0</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Lidax" Type="Fantom">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Sync" Type="Synchronization">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Type" Type="int">0</Param>
+    <Time Name="Start" Type="GPS">896827974.0</Time>
+    <Param Name="Wait" Type="double" Unit="s">-0</Param>
+    <Param Name="Repeat" Type="int">1</Param>
+    <Param Name="RepeatRate" Type="double" Unit="s">0</Param>
+    <Param Name="SlowDown" Type="double" Unit="s">0</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Test" Type="TestParameter">
+    <Param Name="Flag" Type="string">TestParameters</Param>
+    <Param Name="Subtype" Type="string">SweptSine</Param>
+    <Param Name="SweepType" Type="int">1</Param>
+    <Param Name="SweepDirection" Type="int">0</Param>
+    <Param Name="StartFrequency" Type="double" Unit="Hz">40</Param>
+    <Param Name="StopFrequency" Type="double" Unit="Hz">7444</Param>
+    <Param Name="NumberOfPoints" Type="int">61</Param>
+    <Param Name="AChannels" Type="int">1</Param>
+    <Param Name="Averages" Type="int">30</Param>
+    <Param Name="MeasurementTime" Type="double" Unit="s" Dim="2">0.3	30</Param>
+    <Param Name="SettlingTime" Type="double">0.1</Param>
+    <Param Name="StimulusAmplitude" Type="double">0.03</Param>
+    <Param Name="HarmonicOrder" Type="int">1</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="FFTResult" Type="boolean">false</Param>
+    <Param Name="MeasurementChannel[0]" Type="string" Unit="channel"></Param>
+    <Param Name="MeasurementActive[0]" Type="boolean">false</Param>
+    <Param Name="MeasurementChannel[1]" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="MeasurementActive[1]" Type="boolean">true</Param>
+    <Param Name="StimulusChannel" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="StimulusReadback" Type="string" Unit="channel"></Param>
+    <Param Name="MeasurementChannel[2]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="MeasurementActive[2]" Type="boolean">true</Param>
+    <Param Name="SweepPoints" Type="double" Unit="Hz" Dim="8">10	0.004	100	0.004	1000	0.004	10000	0.004</Param>
+    <Param Name="MeasurementChannel[3]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="MeasurementActive[3]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[4]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="MeasurementActive[4]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[5]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="MeasurementActive[5]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[6]" Type="string" Unit="channel">L1:LSC-REFL_Q</Param>
+    <Param Name="MeasurementActive[6]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[7]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="MeasurementActive[7]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[8]" Type="string" Unit="channel">L1:LSC-AS5_I_OUT</Param>
+    <Param Name="MeasurementActive[8]" Type="boolean">true</Param>
+    <Param Name="MeasurementChannel[9]" Type="string" Unit="channel">L1:OMC-PD_SHUTTER_OUT</Param>
+    <Param Name="MeasurementActive[9]" Type="boolean">true</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Plot[1][0]" Type="Plot">
+    <Param Name="Flag" Type="string">Settings</Param>
+    <Param Name="Name" Type="string">Default</Param>
+    <Param Name="TracesGraphType" Type="string">Transfer function</Param>
+    <Param Name="TracesActive[0]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[0]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="TracesActive[1]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[1]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[1]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="TracesActive[2]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[2]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[2]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="TracesActive[3]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[3]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[3]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="TracesActive[4]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[4]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[4]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="TracesActive[5]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[5]" Type="string" Unit="channel">L1:PSL-ISS_ILMONPD_W</Param>
+    <Param Name="TracesBChannel[5]" Type="string" Unit="channel">L1:LSC-AS_Q</Param>
+    <Param Name="TracesActive[6]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[7]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesPlotStyle" Type="int" Dim="8">2	2	2	2	2	0	0	0</Param>
+    <Param Name="TracesLineAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesLineAttrStyle" Type="int" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesLineAttrWidth" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesMarkerAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesMarkerAttrStyle" Type="int" Dim="8">20	22	21	23	29	27	2	5</Param>
+    <Param Name="TracesMarkerAttrSize" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesBarAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesBarAttrStyle" Type="int" Dim="8">1001	1001	1001	1001	1001	1001	1001	1001</Param>
+    <Param Name="TracesBarAttrWidth" Type="double" Dim="8">0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1</Param>
+    <Param Name="RangeAxisScale" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRange" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRangeFrom" Type="double" Dim="2">36	-132.53</Param>
+    <Param Name="RangeRangeTo" Type="double" Dim="2">8188.4	-2.52347</Param>
+    <Param Name="RangeBin" Type="int">1</Param>
+    <Param Name="RangeBinLogSpacing" Type="boolean">true</Param>
+    <Param Name="UnitsXValues" Type="int">0</Param>
+    <Param Name="UnitsYValues" Type="int">1</Param>
+    <Param Name="UnitsXUnit" Type="string">default</Param>
+    <Param Name="UnitsYUnit" Type="string">default</Param>
+    <Param Name="UnitsXMag" Type="int">0</Param>
+    <Param Name="UnitsYMag" Type="int">0</Param>
+    <Param Name="UnitsXSlope" Type="double">1</Param>
+    <Param Name="UnitsYSlope" Type="double">1</Param>
+    <Param Name="UnitsXOffset" Type="double">0</Param>
+    <Param Name="UnitsYOffset" Type="double">0</Param>
+    <Param Name="CursorActive" Type="boolean" Dim="2">false	false</Param>
+    <Param Name="CursorTrace" Type="int">0</Param>
+    <Param Name="CursorStyle" Type="int">1</Param>
+    <Param Name="CursorType" Type="int">0</Param>
+    <Param Name="CursorX" Type="double" Dim="2">40	40</Param>
+    <Param Name="CursorH" Type="double" Dim="2">0	100</Param>
+    <Param Name="CursorValid" Type="boolean" Dim="8">true	true	true	false	true	false	false	false</Param>
+    <Param Name="CursorN" Type="double" Dim="8">61	61	61	0	61	0	0	0</Param>
+    <Param Name="CursorXDiff" Type="double" Dim="8">7404	7404	7404	776.783	7404	913.275	0	0</Param>
+    <Param Name="CursorYDiff" Type="double" Dim="8">-26.0067	39.6434	23.6892	-16.3919	36.8649	0	0	0</Param>
+    <Param Name="CursorMean" Type="double" Dim="8">-79.4469	30.8919	21.3683	0	16.437	0	0	0</Param>
+    <Param Name="CursorRMS" Type="double" Dim="8">80.1978	32.8789	23.8384	0	21.1816	0	0	0</Param>
+    <Param Name="CursorStdDev" Type="double" Dim="8">11.0396	11.3501	10.6548	0	13.4707	0	0	0</Param>
+    <Param Name="CursorSum" Type="double" Dim="8">-4846.26	1884.4	1303.47	0	1002.66	0	0	0</Param>
+    <Param Name="CursorSqrSum" Type="double" Dim="8">392333	65942.2	34664.4	0	27368.2	0	0	0</Param>
+    <Param Name="CursorArea" Type="double" Dim="8">-723404	284611	200199	0	228298	0	0	0</Param>
+    <Param Name="CursorRMSArea" Type="double" Dim="8">8162.95	3195.78	2322.17	0	2596.49	0	0	0</Param>
+    <Param Name="CursorPeakX" Type="double" Dim="8">271.832	2198.87	3708.29	0	4815.72	0	0	0</Param>
+    <Param Name="CursorPeakY" Type="double" Dim="8">-66.056	39.5096	31.9854	0	32.4549	0	0	0</Param>
+    <Param Name="ConfigAutoConfig" Type="boolean">true</Param>
+    <Param Name="ConfigRespectUser" Type="boolean">true</Param>
+    <Param Name="ConfigAutoAxes" Type="boolean">true</Param>
+    <Param Name="ConfigAutoBin" Type="boolean">true</Param>
+    <Param Name="ConfigAutoTimeAdjust" Type="boolean">true</Param>
+    <Param Name="StyleTitle" Type="string">Transfer function</Param>
+    <Param Name="StyleTitleAlign" Type="int">13</Param>
+    <Param Name="StyleTitleAngle" Type="double">0</Param>
+    <Param Name="StyleTitleColor" Type="int">1</Param>
+    <Param Name="StyleTitleFont" Type="int">62</Param>
+    <Param Name="StyleTitleSize" Type="double">0.05</Param>
+    <Param Name="StyleMargin" Type="double" Dim="4">0.1	0.05	0.1	0.18</Param>
+    <Param Name="AxisXTitle" Type="string">Frequency</Param>
+    <Param Name="AxisXAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisXAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisXAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisXAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisXAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisXAxisAttrTitleOffset" Type="double">1.4</Param>
+    <Param Name="AxisXAxisAttrTitleSize" Type="double">0.042</Param>
+    <Param Name="AxisXAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisXGrid" Type="boolean">true</Param>
+    <Param Name="AxisXBothSides" Type="boolean">true</Param>
+    <Param Name="AxisXCenterTitle" Type="boolean">true</Param>
+    <Param Name="AxisYTitle" Type="string">Magnitude</Param>
+    <Param Name="AxisYAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisYAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisYAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisYAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisYAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisYAxisAttrTitleOffset" Type="double">0.95</Param>
+    <Param Name="AxisYAxisAttrTitleSize" Type="double">0.045</Param>
+    <Param Name="AxisYAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisYGrid" Type="boolean">true</Param>
+    <Param Name="AxisYBothSides" Type="boolean">true</Param>
+    <Param Name="AxisYCenterTitle" Type="boolean">true</Param>
+    <Param Name="LegendShow" Type="boolean">false</Param>
+    <Param Name="LegendPlacement" Type="int">3</Param>
+    <Param Name="LegendXAdjust" Type="double">0.17</Param>
+    <Param Name="LegendYAdjust" Type="double">0.57</Param>
+    <Param Name="LegendSymbolStyle" Type="int">0</Param>
+    <Param Name="LegendTextStyle" Type="int">0</Param>
+    <Param Name="LegendSize" Type="double">1</Param>
+    <Param Name="LegendText[0]" Type="string"></Param>
+    <Param Name="LegendText[1]" Type="string"></Param>
+    <Param Name="LegendText[2]" Type="string"></Param>
+    <Param Name="LegendText[3]" Type="string"></Param>
+    <Param Name="LegendText[4]" Type="string"></Param>
+    <Param Name="LegendText[5]" Type="string"></Param>
+    <Param Name="LegendText[6]" Type="string"></Param>
+    <Param Name="LegendText[7]" Type="string"></Param>
+    <Param Name="ParamShow" Type="boolean">true</Param>
+    <Param Name="ParamT0" Type="boolean">true</Param>
+    <Param Name="ParamAvg" Type="boolean">true</Param>
+    <Param Name="ParamSpecial" Type="boolean">true</Param>
+    <Param Name="ParamTimeFormatUTC" Type="boolean">true</Param>
+    <Param Name="ParamTextSize" Type="double">0.04</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Plot[1][1]" Type="Plot">
+    <Param Name="Flag" Type="string">Settings</Param>
+    <Param Name="Name" Type="string">Default</Param>
+    <Param Name="TracesGraphType" Type="string">Transfer function</Param>
+    <Param Name="TracesActive[0]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[0]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="TracesActive[1]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[1]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[1]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="TracesActive[2]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[2]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[2]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="TracesActive[3]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[3]" Type="string" Unit="channel">L1:PSL-ISS_ILMONPD_W</Param>
+    <Param Name="TracesBChannel[3]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="TracesActive[4]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[4]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[4]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="TracesActive[5]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[5]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[5]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[6]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[7]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesPlotStyle" Type="int" Dim="8">2	2	2	2	2	0	0	0</Param>
+    <Param Name="TracesLineAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesLineAttrStyle" Type="int" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesLineAttrWidth" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesMarkerAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesMarkerAttrStyle" Type="int" Dim="8">20	22	21	23	29	27	2	5</Param>
+    <Param Name="TracesMarkerAttrSize" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesBarAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesBarAttrStyle" Type="int" Dim="8">1001	1001	1001	1001	1001	1001	1001	1001</Param>
+    <Param Name="TracesBarAttrWidth" Type="double" Dim="8">0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1</Param>
+    <Param Name="RangeAxisScale" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRange" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRangeFrom" Type="double" Dim="2">36	-1266.65</Param>
+    <Param Name="RangeRangeTo" Type="double" Dim="2">8188.4	234.209</Param>
+    <Param Name="RangeBin" Type="int">1</Param>
+    <Param Name="RangeBinLogSpacing" Type="boolean">true</Param>
+    <Param Name="UnitsXValues" Type="int">0</Param>
+    <Param Name="UnitsYValues" Type="int">7</Param>
+    <Param Name="UnitsXUnit" Type="string">default</Param>
+    <Param Name="UnitsYUnit" Type="string">default</Param>
+    <Param Name="UnitsXMag" Type="int">0</Param>
+    <Param Name="UnitsYMag" Type="int">0</Param>
+    <Param Name="UnitsXSlope" Type="double">1</Param>
+    <Param Name="UnitsYSlope" Type="double">1</Param>
+    <Param Name="UnitsXOffset" Type="double">0</Param>
+    <Param Name="UnitsYOffset" Type="double">0</Param>
+    <Param Name="CursorActive" Type="boolean" Dim="2">false	false</Param>
+    <Param Name="CursorTrace" Type="int">0</Param>
+    <Param Name="CursorStyle" Type="int">1</Param>
+    <Param Name="CursorType" Type="int">0</Param>
+    <Param Name="CursorX" Type="double" Dim="2">40	40</Param>
+    <Param Name="CursorH" Type="double" Dim="2">0	100</Param>
+    <Param Name="CursorValid" Type="boolean" Dim="8">true	true	true	false	true	false	false	false</Param>
+    <Param Name="CursorN" Type="double" Dim="8">61	61	61	0	61	0	0	0</Param>
+    <Param Name="CursorXDiff" Type="double" Dim="8">7404	7404	7404	975.679	7404	0	0	0</Param>
+    <Param Name="CursorYDiff" Type="double" Dim="8">-1665.18	-2040.1	-1665.41	46.9115	-1368.37	0	0	0</Param>
+    <Param Name="CursorMean" Type="double" Dim="8">-1107.04	-792.325	-943.005	0	-567.329	0	0	0</Param>
+    <Param Name="CursorRMS" Type="double" Dim="8">1299.64	1077.34	1164.3	0	835.677	0	0	0</Param>
+    <Param Name="CursorStdDev" Type="double" Dim="8">686.479	736.041	688.561	0	618.683	0	0	0</Param>
+    <Param Name="CursorSum" Type="double" Dim="8">-67529.1	-48331.8	-57523.3	0	-34607.1	0	0	0</Param>
+    <Param Name="CursorSqrSum" Type="double" Dim="8">1.03032e+08	7.07999e+07	8.26917e+07	0	4.25997e+07	0	0	0</Param>
+    <Param Name="CursorArea" Type="double" Dim="8">-1.36308e+07	-1.27361e+07	-1.31729e+07	0	-9.47431e+06	0	0	0</Param>
+    <Param Name="CursorRMSArea" Type="double" Dim="8">155405	148841	152522	0	112411	0	0	0</Param>
+    <Param Name="CursorPeakX" Type="double" Dim="8">40	40	40	0	43.6404	0	0	0</Param>
+    <Param Name="CursorPeakY" Type="double" Dim="8">-34.0179	101.557	-114.494	0	120.395	0	0	0</Param>
+    <Param Name="ConfigAutoConfig" Type="boolean">true</Param>
+    <Param Name="ConfigRespectUser" Type="boolean">true</Param>
+    <Param Name="ConfigAutoAxes" Type="boolean">true</Param>
+    <Param Name="ConfigAutoBin" Type="boolean">true</Param>
+    <Param Name="ConfigAutoTimeAdjust" Type="boolean">true</Param>
+    <Param Name="StyleTitle" Type="string">Transfer function</Param>
+    <Param Name="StyleTitleAlign" Type="int">13</Param>
+    <Param Name="StyleTitleAngle" Type="double">0</Param>
+    <Param Name="StyleTitleColor" Type="int">1</Param>
+    <Param Name="StyleTitleFont" Type="int">62</Param>
+    <Param Name="StyleTitleSize" Type="double">0.05</Param>
+    <Param Name="StyleMargin" Type="double" Dim="4">0.1	0.05	0.1	0.18</Param>
+    <Param Name="AxisXTitle" Type="string">Frequency</Param>
+    <Param Name="AxisXAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisXAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisXAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisXAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisXAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisXAxisAttrTitleOffset" Type="double">1.4</Param>
+    <Param Name="AxisXAxisAttrTitleSize" Type="double">0.042</Param>
+    <Param Name="AxisXAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisXGrid" Type="boolean">true</Param>
+    <Param Name="AxisXBothSides" Type="boolean">true</Param>
+    <Param Name="AxisXCenterTitle" Type="boolean">true</Param>
+    <Param Name="AxisYTitle" Type="string">Phase</Param>
+    <Param Name="AxisYAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisYAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisYAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisYAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisYAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisYAxisAttrTitleOffset" Type="double">0.95</Param>
+    <Param Name="AxisYAxisAttrTitleSize" Type="double">0.045</Param>
+    <Param Name="AxisYAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisYGrid" Type="boolean">true</Param>
+    <Param Name="AxisYBothSides" Type="boolean">true</Param>
+    <Param Name="AxisYCenterTitle" Type="boolean">true</Param>
+    <Param Name="LegendShow" Type="boolean">false</Param>
+    <Param Name="LegendPlacement" Type="int">2</Param>
+    <Param Name="LegendXAdjust" Type="double">0</Param>
+    <Param Name="LegendYAdjust" Type="double">0</Param>
+    <Param Name="LegendSymbolStyle" Type="int">0</Param>
+    <Param Name="LegendTextStyle" Type="int">0</Param>
+    <Param Name="LegendSize" Type="double">1</Param>
+    <Param Name="LegendText[0]" Type="string"></Param>
+    <Param Name="LegendText[1]" Type="string"></Param>
+    <Param Name="LegendText[2]" Type="string"></Param>
+    <Param Name="LegendText[3]" Type="string"></Param>
+    <Param Name="LegendText[4]" Type="string"></Param>
+    <Param Name="LegendText[5]" Type="string"></Param>
+    <Param Name="LegendText[6]" Type="string"></Param>
+    <Param Name="LegendText[7]" Type="string"></Param>
+    <Param Name="ParamShow" Type="boolean">true</Param>
+    <Param Name="ParamT0" Type="boolean">true</Param>
+    <Param Name="ParamAvg" Type="boolean">true</Param>
+    <Param Name="ParamSpecial" Type="boolean">true</Param>
+    <Param Name="ParamTimeFormatUTC" Type="boolean">true</Param>
+    <Param Name="ParamTextSize" Type="double">0.04</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Plot[1][2]" Type="Plot">
+    <Param Name="Flag" Type="string">Settings</Param>
+    <Param Name="Name" Type="string">Default</Param>
+    <Param Name="TracesGraphType" Type="string">Coherence function</Param>
+    <Param Name="TracesActive[0]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[0]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="TracesActive[1]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[1]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[1]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="TracesActive[2]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[2]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[2]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="TracesActive[3]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[3]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[3]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="TracesActive[4]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[4]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="TracesBChannel[4]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="TracesActive[5]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[5]" Type="string" Unit="channel">L1:PSL-ISS_ILMONPD_W</Param>
+    <Param Name="TracesBChannel[5]" Type="string" Unit="channel">L1:LSC-AS_Q</Param>
+    <Param Name="TracesActive[6]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[7]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesPlotStyle" Type="int" Dim="8">2	2	2	2	2	0	0	0</Param>
+    <Param Name="TracesLineAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesLineAttrStyle" Type="int" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesLineAttrWidth" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesMarkerAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesMarkerAttrStyle" Type="int" Dim="8">20	22	21	23	29	27	2	5</Param>
+    <Param Name="TracesMarkerAttrSize" Type="double" Dim="8">1	2	1	1	1	1	1	1</Param>
+    <Param Name="TracesBarAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesBarAttrStyle" Type="int" Dim="8">1001	1001	1001	1001	1001	1001	1001	1001</Param>
+    <Param Name="TracesBarAttrWidth" Type="double" Dim="8">0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1</Param>
+    <Param Name="RangeAxisScale" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRange" Type="int" Dim="2">0	1</Param>
+    <Param Name="RangeRangeFrom" Type="double" Dim="2">30.3251	0</Param>
+    <Param Name="RangeRangeTo" Type="double" Dim="2">1096.63	1</Param>
+    <Param Name="RangeBin" Type="int">1</Param>
+    <Param Name="RangeBinLogSpacing" Type="boolean">true</Param>
+    <Param Name="UnitsXValues" Type="int">0</Param>
+    <Param Name="UnitsYValues" Type="int">0</Param>
+    <Param Name="UnitsXUnit" Type="string">default</Param>
+    <Param Name="UnitsYUnit" Type="string">default</Param>
+    <Param Name="UnitsXMag" Type="int">0</Param>
+    <Param Name="UnitsYMag" Type="int">0</Param>
+    <Param Name="UnitsXSlope" Type="double">1</Param>
+    <Param Name="UnitsYSlope" Type="double">1</Param>
+    <Param Name="UnitsXOffset" Type="double">0</Param>
+    <Param Name="UnitsYOffset" Type="double">0</Param>
+    <Param Name="CursorActive" Type="boolean" Dim="2">false	false</Param>
+    <Param Name="CursorTrace" Type="int">0</Param>
+    <Param Name="CursorStyle" Type="int">1</Param>
+    <Param Name="CursorType" Type="int">0</Param>
+    <Param Name="CursorX" Type="double" Dim="2">40	40</Param>
+    <Param Name="CursorH" Type="double" Dim="2">0	100</Param>
+    <Param Name="CursorValid" Type="boolean" Dim="8">true	true	true	false	true	false	false	false</Param>
+    <Param Name="CursorN" Type="double" Dim="8">61	61	61	0	61	0	0	0</Param>
+    <Param Name="CursorXDiff" Type="double" Dim="8">7404	7404	7404	761.744	7404	921.355	0	0</Param>
+    <Param Name="CursorYDiff" Type="double" Dim="8">0.151683	0.895277	0.321659	0.00799468	0.902992	0	0	0</Param>
+    <Param Name="CursorMean" Type="double" Dim="8">0.828423	0.934345	0.974119	0	0.820736	0	0	0</Param>
+    <Param Name="CursorRMS" Type="double" Dim="8">0.879583	0.952335	0.976656	0	0.88503	0	0	0</Param>
+    <Param Name="CursorStdDev" Type="double" Dim="8">0.298056	0.185763	0.0709328	0	0.333913	0	0	0</Param>
+    <Param Name="CursorSum" Type="double" Dim="8">50.5338	56.995	59.4213	0	50.0649	0	0	0</Param>
+    <Param Name="CursorSqrSum" Type="double" Dim="8">47.1936	55.3235	58.1853	0	47.78	0	0	0</Param>
+    <Param Name="CursorArea" Type="double" Dim="8">6350.46	7939.2	8000.3	0	7942.26	0	0	0</Param>
+    <Param Name="CursorRMSArea" Type="double" Dim="8">74.8097	88.6805	89.3149	0	88.9382	0	0	0</Param>
+    <Param Name="CursorPeakX" Type="double" Dim="8">500.154	500.154	1195.07	0	5732.17	0	0	0</Param>
+    <Param Name="CursorPeakY" Type="double" Dim="8">0.998615	0.998524	0.999555	0	0.999521	0	0	0</Param>
+    <Param Name="ConfigAutoConfig" Type="boolean">true</Param>
+    <Param Name="ConfigRespectUser" Type="boolean">true</Param>
+    <Param Name="ConfigAutoAxes" Type="boolean">true</Param>
+    <Param Name="ConfigAutoBin" Type="boolean">true</Param>
+    <Param Name="ConfigAutoTimeAdjust" Type="boolean">true</Param>
+    <Param Name="StyleTitle" Type="string">Coherence function</Param>
+    <Param Name="StyleTitleAlign" Type="int">13</Param>
+    <Param Name="StyleTitleAngle" Type="double">0</Param>
+    <Param Name="StyleTitleColor" Type="int">1</Param>
+    <Param Name="StyleTitleFont" Type="int">62</Param>
+    <Param Name="StyleTitleSize" Type="double">0.05</Param>
+    <Param Name="StyleMargin" Type="double" Dim="4">0.1	0.05	0.1	0.18</Param>
+    <Param Name="AxisXTitle" Type="string">Frequency</Param>
+    <Param Name="AxisXAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisXAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisXAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisXAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisXAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisXAxisAttrTitleOffset" Type="double">1.4</Param>
+    <Param Name="AxisXAxisAttrTitleSize" Type="double">0.042</Param>
+    <Param Name="AxisXAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisXGrid" Type="boolean">true</Param>
+    <Param Name="AxisXBothSides" Type="boolean">true</Param>
+    <Param Name="AxisXCenterTitle" Type="boolean">true</Param>
+    <Param Name="AxisYTitle" Type="string">Coherence</Param>
+    <Param Name="AxisYAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisYAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisYAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisYAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisYAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisYAxisAttrTitleOffset" Type="double">0.95</Param>
+    <Param Name="AxisYAxisAttrTitleSize" Type="double">0.045</Param>
+    <Param Name="AxisYAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisYGrid" Type="boolean">true</Param>
+    <Param Name="AxisYBothSides" Type="boolean">true</Param>
+    <Param Name="AxisYCenterTitle" Type="boolean">true</Param>
+    <Param Name="LegendShow" Type="boolean">true</Param>
+    <Param Name="LegendPlacement" Type="int">1</Param>
+    <Param Name="LegendXAdjust" Type="double">0</Param>
+    <Param Name="LegendYAdjust" Type="double">0</Param>
+    <Param Name="LegendSymbolStyle" Type="int">0</Param>
+    <Param Name="LegendTextStyle" Type="int">0</Param>
+    <Param Name="LegendSize" Type="double">1</Param>
+    <Param Name="LegendText[0]" Type="string"></Param>
+    <Param Name="LegendText[1]" Type="string"></Param>
+    <Param Name="LegendText[2]" Type="string"></Param>
+    <Param Name="LegendText[3]" Type="string"></Param>
+    <Param Name="LegendText[4]" Type="string"></Param>
+    <Param Name="LegendText[5]" Type="string"></Param>
+    <Param Name="LegendText[6]" Type="string"></Param>
+    <Param Name="LegendText[7]" Type="string"></Param>
+    <Param Name="ParamShow" Type="boolean">true</Param>
+    <Param Name="ParamT0" Type="boolean">true</Param>
+    <Param Name="ParamAvg" Type="boolean">true</Param>
+    <Param Name="ParamSpecial" Type="boolean">true</Param>
+    <Param Name="ParamTimeFormatUTC" Type="boolean">true</Param>
+    <Param Name="ParamTextSize" Type="double">0.04</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Plot[1][3]" Type="Plot">
+    <Param Name="Flag" Type="string">Settings</Param>
+    <Param Name="Name" Type="string">Default</Param>
+    <Param Name="TracesGraphType" Type="string">Transfer function</Param>
+    <Param Name="TracesActive[0]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[0]" Type="string" Unit="channel">L1:PSL-ISS_ILMONPD_W</Param>
+    <Param Name="TracesBChannel[0]" Type="string" Unit="channel">L1:OMC-READOUT_OUT_DAQ</Param>
+    <Param Name="TracesActive[1]" Type="boolean">true</Param>
+    <Param Name="TracesAChannel[1]" Type="string" Unit="channel">L1:PSL-ISS_ILMONPD_W(REF0)</Param>
+    <Param Name="TracesBChannel[1]" Type="string" Unit="channel">L1:OMC-READOUT_OUT_DAQ(REF0)</Param>
+    <Param Name="TracesActive[2]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[2]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[2]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[3]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[3]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[3]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[4]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[4]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[4]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[5]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[5]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[5]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[6]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[6]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesActive[7]" Type="boolean">false</Param>
+    <Param Name="TracesAChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesBChannel[7]" Type="string" Unit="channel"></Param>
+    <Param Name="TracesPlotStyle" Type="int" Dim="8">2	2	0	0	0	0	0	0</Param>
+    <Param Name="TracesLineAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesLineAttrStyle" Type="int" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesLineAttrWidth" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesMarkerAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesMarkerAttrStyle" Type="int" Dim="8">20	22	21	23	29	27	2	5</Param>
+    <Param Name="TracesMarkerAttrSize" Type="double" Dim="8">1	1	1	1	1	1	1	1</Param>
+    <Param Name="TracesBarAttrColor" Type="int" Dim="8">2	4	3	28	6	7	5	1</Param>
+    <Param Name="TracesBarAttrStyle" Type="int" Dim="8">1001	1001	1001	1001	1001	1001	1001	1001</Param>
+    <Param Name="TracesBarAttrWidth" Type="double" Dim="8">0.1	0.1	0.1	0.1	0.1	0.1	0.1	0.1</Param>
+    <Param Name="RangeAxisScale" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRange" Type="int" Dim="2">1	0</Param>
+    <Param Name="RangeRangeFrom" Type="double" Dim="2">19	-195.948</Param>
+    <Param Name="RangeRangeTo" Type="double" Dim="2">1098	-144.721</Param>
+    <Param Name="RangeBin" Type="int">1</Param>
+    <Param Name="RangeBinLogSpacing" Type="boolean">true</Param>
+    <Param Name="UnitsXValues" Type="int">0</Param>
+    <Param Name="UnitsYValues" Type="int">1</Param>
+    <Param Name="UnitsXUnit" Type="string">default</Param>
+    <Param Name="UnitsYUnit" Type="string">default</Param>
+    <Param Name="UnitsXMag" Type="int">0</Param>
+    <Param Name="UnitsYMag" Type="int">0</Param>
+    <Param Name="UnitsXSlope" Type="double">1</Param>
+    <Param Name="UnitsYSlope" Type="double">1</Param>
+    <Param Name="UnitsXOffset" Type="double">0</Param>
+    <Param Name="UnitsYOffset" Type="double">0</Param>
+    <Param Name="CursorActive" Type="boolean" Dim="2">false	false</Param>
+    <Param Name="CursorTrace" Type="int">0</Param>
+    <Param Name="CursorStyle" Type="int">1</Param>
+    <Param Name="CursorType" Type="int">0</Param>
+    <Param Name="CursorX" Type="double" Dim="2">0	0</Param>
+    <Param Name="CursorH" Type="double" Dim="2">0	100</Param>
+    <Param Name="CursorValid" Type="boolean" Dim="8">false	false	false	false	false	false	false	false</Param>
+    <Param Name="CursorN" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorXDiff" Type="double" Dim="8">975.679	980	0	0	0	0	0	0</Param>
+    <Param Name="CursorYDiff" Type="double" Dim="8">-0.890564	-0.893311	0	0	0	0	0	0</Param>
+    <Param Name="CursorMean" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorRMS" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorStdDev" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorSum" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorSqrSum" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorArea" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorRMSArea" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorPeakX" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="CursorPeakY" Type="double" Dim="8">0	0	0	0	0	0	0	0</Param>
+    <Param Name="ConfigAutoConfig" Type="boolean">true</Param>
+    <Param Name="ConfigRespectUser" Type="boolean">true</Param>
+    <Param Name="ConfigAutoAxes" Type="boolean">true</Param>
+    <Param Name="ConfigAutoBin" Type="boolean">true</Param>
+    <Param Name="ConfigAutoTimeAdjust" Type="boolean">true</Param>
+    <Param Name="StyleTitle" Type="string">Transfer function</Param>
+    <Param Name="StyleTitleAlign" Type="int">13</Param>
+    <Param Name="StyleTitleAngle" Type="double">0</Param>
+    <Param Name="StyleTitleColor" Type="int">1</Param>
+    <Param Name="StyleTitleFont" Type="int">62</Param>
+    <Param Name="StyleTitleSize" Type="double">0.05</Param>
+    <Param Name="StyleMargin" Type="double" Dim="4">0.1	0.05	0.1	0.18</Param>
+    <Param Name="AxisXTitle" Type="string">Frequency</Param>
+    <Param Name="AxisXAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisXAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisXAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisXAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisXAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisXAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisXAxisAttrTitleOffset" Type="double">1.4</Param>
+    <Param Name="AxisXAxisAttrTitleSize" Type="double">0.042</Param>
+    <Param Name="AxisXAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisXGrid" Type="boolean">true</Param>
+    <Param Name="AxisXBothSides" Type="boolean">true</Param>
+    <Param Name="AxisXCenterTitle" Type="boolean">true</Param>
+    <Param Name="AxisYTitle" Type="string">Magnitude</Param>
+    <Param Name="AxisYAxisAttrAxisColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelColor" Type="int">1</Param>
+    <Param Name="AxisYAxisAttrLabelFont" Type="int">62</Param>
+    <Param Name="AxisYAxisAttrLabelOffset" Type="double">0.005</Param>
+    <Param Name="AxisYAxisAttrLabelSize" Type="double">0.04</Param>
+    <Param Name="AxisYAxisAttrNdividions" Type="int">510</Param>
+    <Param Name="AxisYAxisAttrTickLength" Type="double">0.03</Param>
+    <Param Name="AxisYAxisAttrTitleOffset" Type="double">0.95</Param>
+    <Param Name="AxisYAxisAttrTitleSize" Type="double">0.045</Param>
+    <Param Name="AxisYAxisAttrTitleColor" Type="int">1</Param>
+    <Param Name="AxisYGrid" Type="boolean">true</Param>
+    <Param Name="AxisYBothSides" Type="boolean">true</Param>
+    <Param Name="AxisYCenterTitle" Type="boolean">true</Param>
+    <Param Name="LegendShow" Type="boolean">false</Param>
+    <Param Name="LegendPlacement" Type="int">0</Param>
+    <Param Name="LegendXAdjust" Type="double">0</Param>
+    <Param Name="LegendYAdjust" Type="double">0</Param>
+    <Param Name="LegendSymbolStyle" Type="int">0</Param>
+    <Param Name="LegendTextStyle" Type="int">0</Param>
+    <Param Name="LegendSize" Type="double">1</Param>
+    <Param Name="LegendText[0]" Type="string"></Param>
+    <Param Name="LegendText[1]" Type="string"></Param>
+    <Param Name="LegendText[2]" Type="string"></Param>
+    <Param Name="LegendText[3]" Type="string"></Param>
+    <Param Name="LegendText[4]" Type="string"></Param>
+    <Param Name="LegendText[5]" Type="string"></Param>
+    <Param Name="LegendText[6]" Type="string"></Param>
+    <Param Name="LegendText[7]" Type="string"></Param>
+    <Param Name="ParamShow" Type="boolean">true</Param>
+    <Param Name="ParamT0" Type="boolean">true</Param>
+    <Param Name="ParamAvg" Type="boolean">true</Param>
+    <Param Name="ParamSpecial" Type="boolean">true</Param>
+    <Param Name="ParamTimeFormatUTC" Type="boolean">true</Param>
+    <Param Name="ParamTextSize" Type="double">0.04</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Index" Type="Index">
+    <Param Name="Flag" Type="string">Result</Param>
+    <Param Name="Entry[0]" Type="string">MasterIndex:
+      Entry[0] = MasterIndex;
+      Entry[1] = TransferFunction[0];
+      Entry[2] = CoherenceFunction[0];</Param>
+    <Param Name="Entry[1]" Type="string">TransferFunction[0]:
+      ChannelA[0] = L1:LSC-MOD_2_EXC;
+      ChannelA[1] = L1:OMC-PD_SUM_OUT_DAQ;
+      ChannelB[0] = L1:LSC-MOD_2_EXC;
+      ChannelB[1] = L1:OMC-PD_SUM_OUT_DAQ;
+      ChannelB[2] = L1:LSC-AS5_Q_OUT;
+      ChannelB[3] = L1:LSC-MICH_IN1;
+      ChannelB[4] = L1:LSC-PRC_IN1;
+      ChannelB[5] = L1:LSC-CARM_IN1;
+      ChannelB[6] = L1:LSC-REFL_Q;
+      ChannelB[7] = L1:LSC-DARM_ERR;
+      ChannelB[8] = L1:LSC-AS5_I_OUT;
+      ChannelB[9] = L1:OMC-PD_SHUTTER_OUT;
+      Name[0][0] = Result[0];
+      Offset[0][0] = 61;
+      Length[0][0] = 61;
+      Name[0][1] = Result[0];
+      Offset[0][1] = 122;
+      Length[0][1] = 61;
+      Name[0][2] = Result[0];
+      Offset[0][2] = 183;
+      Length[0][2] = 61;
+      Name[0][3] = Result[0];
+      Offset[0][3] = 244;
+      Length[0][3] = 61;
+      Name[0][4] = Result[0];
+      Offset[0][4] = 305;
+      Length[0][4] = 61;
+      Name[0][5] = Result[0];
+      Offset[0][5] = 366;
+      Length[0][5] = 61;
+      Name[0][6] = Result[0];
+      Offset[0][6] = 427;
+      Length[0][6] = 61;
+      Name[0][7] = Result[0];
+      Offset[0][7] = 488;
+      Length[0][7] = 61;
+      Name[0][8] = Result[0];
+      Offset[0][8] = 549;
+      Length[0][8] = 61;
+      Name[0][9] = Result[0];
+      Offset[0][9] = 610;
+      Length[0][9] = 61;
+      Name[1][0] = Result[1];
+      Offset[1][0] = 61;
+      Length[1][0] = 61;
+      Name[1][1] = Result[1];
+      Offset[1][1] = 122;
+      Length[1][1] = 61;
+      Name[1][2] = Result[1];
+      Offset[1][2] = 183;
+      Length[1][2] = 61;
+      Name[1][3] = Result[1];
+      Offset[1][3] = 244;
+      Length[1][3] = 61;
+      Name[1][4] = Result[1];
+      Offset[1][4] = 305;
+      Length[1][4] = 61;
+      Name[1][5] = Result[1];
+      Offset[1][5] = 366;
+      Length[1][5] = 61;
+      Name[1][6] = Result[1];
+      Offset[1][6] = 427;
+      Length[1][6] = 61;
+      Name[1][7] = Result[1];
+      Offset[1][7] = 488;
+      Length[1][7] = 61;
+      Name[1][8] = Result[1];
+      Offset[1][8] = 549;
+      Length[1][8] = 61;
+      Name[1][9] = Result[1];
+      Offset[1][9] = 610;
+      Length[1][9] = 61;</Param>
+    <Param Name="Entry[2]" Type="string">CoherenceFunction[0]:
+      ChannelA[0] = L1:LSC-MOD_2_EXC;
+      ChannelA[1] = L1:OMC-PD_SUM_OUT_DAQ;
+      ChannelB[0] = L1:LSC-MOD_2_EXC;
+      ChannelB[1] = L1:OMC-PD_SUM_OUT_DAQ;
+      ChannelB[2] = L1:LSC-AS5_Q_OUT;
+      ChannelB[3] = L1:LSC-MICH_IN1;
+      ChannelB[4] = L1:LSC-PRC_IN1;
+      ChannelB[5] = L1:LSC-CARM_IN1;
+      ChannelB[6] = L1:LSC-REFL_Q;
+      ChannelB[7] = L1:LSC-DARM_ERR;
+      ChannelB[8] = L1:LSC-AS5_I_OUT;
+      ChannelB[9] = L1:OMC-PD_SHUTTER_OUT;
+      Name[0][0] = Result[2];
+      Offset[0][0] = 61;
+      Length[0][0] = 61;
+      Name[0][1] = Result[2];
+      Offset[0][1] = 122;
+      Length[0][1] = 61;
+      Name[0][2] = Result[2];
+      Offset[0][2] = 183;
+      Length[0][2] = 61;
+      Name[0][3] = Result[2];
+      Offset[0][3] = 244;
+      Length[0][3] = 61;
+      Name[0][4] = Result[2];
+      Offset[0][4] = 305;
+      Length[0][4] = 61;
+      Name[0][5] = Result[2];
+      Offset[0][5] = 366;
+      Length[0][5] = 61;
+      Name[0][6] = Result[2];
+      Offset[0][6] = 427;
+      Length[0][6] = 61;
+      Name[0][7] = Result[2];
+      Offset[0][7] = 488;
+      Length[0][7] = 61;
+      Name[0][8] = Result[2];
+      Offset[0][8] = 549;
+      Length[0][8] = 61;
+      Name[0][9] = Result[2];
+      Offset[0][9] = 610;
+      Length[0][9] = 61;
+      Name[1][0] = Result[3];
+      Offset[1][0] = 61;
+      Length[1][0] = 61;
+      Name[1][1] = Result[3];
+      Offset[1][1] = 122;
+      Length[1][1] = 61;
+      Name[1][2] = Result[3];
+      Offset[1][2] = 183;
+      Length[1][2] = 61;
+      Name[1][3] = Result[3];
+      Offset[1][3] = 244;
+      Length[1][3] = 61;
+      Name[1][4] = Result[3];
+      Offset[1][4] = 305;
+      Length[1][4] = 61;
+      Name[1][5] = Result[3];
+      Offset[1][5] = 366;
+      Length[1][5] = 61;
+      Name[1][6] = Result[3];
+      Offset[1][6] = 427;
+      Length[1][6] = 61;
+      Name[1][7] = Result[3];
+      Offset[1][7] = 488;
+      Length[1][7] = 61;
+      Name[1][8] = Result[3];
+      Offset[1][8] = 549;
+      Length[1][8] = 61;
+      Name[1][9] = Result[3];
+      Offset[1][9] = 610;
+      Length[1][9] = 61;</Param>
+  </LIGO_LW>
+  <LIGO_LW Name="Result[0]" Type="TransferFunction">
+    <Param Name="Flag" Type="string">Result</Param>
+    <Param Name="Subtype" Type="int">3</Param>
+    <Param Name="f0" Type="double" Unit="Hz">0</Param>
+    <Param Name="df" Type="double" Unit="Hz">0</Param>
+    <Time Name="t0" Type="GPS">962668790.150390625</Time>
+    <Param Name="BW" Type="double" Unit="Hz">0.11107</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="AverageType" Type="int">0</Param>
+    <Param Name="Averages" Type="int">30</Param>
+    <Param Name="N" Type="int">61</Param>
+    <Param Name="M" Type="int">10</Param>
+    <Param Name="ChannelA" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelB[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelB[1]" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[2]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="ChannelB[3]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="ChannelB[4]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="ChannelB[5]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="ChannelB[6]" Type="string" Unit="channel">L1:LSC-REFL_Q</Param>
+    <Param Name="ChannelB[7]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="ChannelB[8]" Type="string" Unit="channel">L1:LSC-AS5_I_OUT</Param>
+    <Param Name="ChannelB[9]" Type="string" Unit="channel">L1:OMC-PD_SHUTTER_OUT</Param>
+    <Array Type="floatComplex">
+      <Dim>671</Dim>
+      <Stream Encoding="LittleEndian,base64">
+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
+      </Stream>
+    </Array>
+  </LIGO_LW>
+  <LIGO_LW Name="Result[1]" Type="TransferFunction">
+    <Param Name="Flag" Type="string">Result</Param>
+    <Param Name="Subtype" Type="int">3</Param>
+    <Param Name="f0" Type="double" Unit="Hz">0</Param>
+    <Param Name="df" Type="double" Unit="Hz">0</Param>
+    <Time Name="t0" Type="GPS">962668790.150390625</Time>
+    <Param Name="BW" Type="double" Unit="Hz">0.11107</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="AverageType" Type="int">0</Param>
+    <Param Name="Averages" Type="int">30</Param>
+    <Param Name="N" Type="int">61</Param>
+    <Param Name="M" Type="int">10</Param>
+    <Param Name="ChannelB[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelA" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[1]" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[2]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="ChannelB[3]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="ChannelB[4]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="ChannelB[5]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="ChannelB[6]" Type="string" Unit="channel">L1:LSC-REFL_Q</Param>
+    <Param Name="ChannelB[7]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="ChannelB[8]" Type="string" Unit="channel">L1:LSC-AS5_I_OUT</Param>
+    <Param Name="ChannelB[9]" Type="string" Unit="channel">L1:OMC-PD_SHUTTER_OUT</Param>
+    <Array Type="floatComplex">
+      <Dim>671</Dim>
+      <Stream Encoding="LittleEndian,base64">
+AAAgQgAAAADPjy5CAAAAAONyPkIAAAAAHshPQgAAAAAusWJCAAAAANZSd0IAAAAA
+l+qGQgAAAAD6MZNCAAAAAHOXoEIAAAAACzWvQgAAAAApJ79CAAAAAMyM0EIAAAAA
+w4fjQgAAAADxPPhCAAAAAExqB0MAAAAAT70TQwAAAAB2LyFDAAAAAOPaL0MAAAAA
+Gdw/QwAAAAA0UlFDAAAAACJfZEMAAAAA6yd5QwAAAAB66odDAAAAACdJlEMAAAAA
+CcihQwAAAABZgbBDAAAAALWRwEMAAAAAVxjSQwAAAABNN+VDAAAAAMMT+kMAAAAA
+IWsIRAAAAACE1RREAAAAACxhIkQAAAAAbCgxRAAAAAD9R0FEAAAAADXfUkQAAAAA
+RRBmRAAAAAB6AHtEAAAAAELsiEQAAAAAZmKVRAAAAADg+qJEAAAAAB3QsUQAAAAA
+8f7BRAAAAADQptNEAAAAAArq5kQAAAAAEe77RAAAAADdbQlFAAAAAM3vFUUAAAAA
+JZUjRQAAAABteDJFAAAAAJK2QkUAAAAAJ29URQAAAACexGdFAAAAAIncfEUAAAAA
+8++JRQAAAAC6fZZFAAAAAP0vpEUAAAAAXCGzRQAAAADhbsNFAAAAAD041UUAAAAA
+AKDoRQAAAADaD6pENXDiwzzRI8W7xrhE0vKzQi0umkPZwKlDn6p9QrpxEMRfMHXE
+iNjMQzKHfMZJ0GTEx/e+w3ypiMIv/vLDLSp0w8RZP8TCpFREwarEQvy/HUIjAx3E
+FJGzQ/GziMG8rt5CahyMQ1+gVcLTTdtDMo6Bw3Ok+0MHIv3DkFOrQ/lrCMSIvRJD
+VO3hw2PwU0J/67zDC1M2w/0LU8NwKrfDF0GHwODXscNF91ZDKV6Ew0DtqUO5j/7B
+W0d/Q3iIeUOcuSbEH3QYRGc/hUMHO8RDhsJ6w9DDzkPosfjDeryMQpku7sMnFL3D
+kfI/wkShNsQ01CZEzWcmxHXflURUG4lCXS9lxDfAEUUeI2PE/NrZxFLZwcJ/IvZD
+vs8exP/KFsO8nmxCOelCxPuUYES48WbCfO4VQ0KJeUTlu4nEEEL/QnyA8EBP9Y7E
+hXiMRLJ2pUNQNT3EqBNYRLlGYMNa6ojEvTZQRGQVLkRKG4bE9/ycwzbqmkSDI2RD
+q/TCxAk29sM2YMxEuby6RMNnWMPthULFT28wxSsG/EQERixFpi8mRfiHi8Thsq1D
+7qqGxhjTc8YsVOBGoXJHRgnpLkb/M5jET01DRg5E2sNrMKJF5GsYxnGUZ0bQpkvG
+657ARj5xrkYzUiLHW1/DRhLMeDcKPHi33+ogtmSMIrc9rLQ48/YXuKvKgDiktIA4
+f5jctz/+CbU2SeC1ijhUNbDOpLfg+cC3TgGAuH2XajamRBi4sBITtwiU7TU6whI4
+LYxFuA7z77Yxiw+40EyfOGF4eDhu+qY4LB1mODUMJjhn10Q4K8fNNzwmSTgXoyw3
+7r1cOGT65jYosYU4pBSNN2/mlTg1Mji1i8iOOKGUpbdg6p84dYcVuHN0hzgp+3i4
+TPUhOCJWpbg8jIw2IuWvuFKg9Lff6IS3Y0xQOCI0JLiR9bc3+l1zuOhbAjd1PXi4
+FJTZNTuITriKm3a1P4cruDpdVbUbdAW4wwvMNfFJ0bfveRK318sJt7VUabcA9dQ2
+/ON5OKdayjbSPT04OY8VtwdyHjgGu+C2On4LOBGEv7XWbvU3+5yvNtTkzTd9kz43
+3sqdNyxcmTdTFjU3o87CN4eKGTWcANs3ifwstyPOzzdDnaa3By2hN2St0rf3tB43
+xqTHt0fEH7VuXoe31kwSty1x97Z4oT634PuitK4+IbcFgrE2N43ltov3ATed3Zu1
+UUTFt4lWLLcGFo61fv1FNYLhdDUmIpc071SitfVOHzaZ2/C1q5/VtZEhVTVMPC42
+tlgJtfEawLV1vwg1p8dHNeJKQrR9yB61WrkMRKDXAUTBCAxBrtkAxHzCnEKWpIFC
+ooIiQw/kOUNI7e3BHQyTw7MVG0QLQwzFfL8pw6GbIcSo07RD8zERw10VLUNyt/DD
+s9cPRDveCURSVelDavwExOiGD0TB25FDY8GawQGSA0Sc3LbCJwdNRLkS+cNYLpFE
+uf50xAgMgUR4upLEuV1qRMPLd8Rf72VElLCfxF697EOJyMjECitgwr5pqcTq68XD
+LSSRxLCvfMSQvAjEs6nMxAys6kNxgfXEnFq6RdmbOsSdUoDEvYRAxZWnsERHFVXF
+Yec9ReBOMcVBiqFF7gMYxRIN6kUHcpPEkHQiRuuJgERGz1xGy11yRbKUikV6/fFG
+8Z7BxmNxgUWjwMxFU8P9xNmdCEbIrG5FFNvyRXXDC0ZVgJNFQu5QRmaFHUP/S4JG
+JILMxYzOj0ZVD03Gn7p4RndSl8Y+LCdG4LCtxg84A0UYVKTGPIwExtW8UcbLs5PG
+naVrRCMaw8ZaaqZGywGexlo/HkcbdspEE1ADR5fHMUeekdrG7UuaR5m8t8dFkMVG
+HVSgx6BFnscB4qjGMtT1RgDx5EhBlinJySCQyVG118gcMG/IEjvFyNNfB0ibcu/I
+0QBNyCPvu8gsHqDIxA0ryRonwUf4cpvJhbWySNrW18mIu6JCrzkpRIysyMTgOO3E
+mhA9w7RSaUPEgWNDBN4ERIM610M5ADjF8DpTRpL3Ssc4PJDF3ZsCxSnZzcRppEPF
+JW/GxYnsesUw6r5Fpiz/xa4rB8alFhvFow2FxKnfu8VCAIFF2UCHxfYf/kWB5qvF
+fkRARtoJ08WZu3xGCI6XxZRpg0aOnXzFhlZiRv0PuMUxD3VGX9/5xKzUg0YLpCpF
+YdtoRpefoUULHUpGcvgiRi2VAUaSVX5G3ErIQ0ZPoka41DbHwVnhRhaIYUZcqLNG
+PO8UxYfF9UbY5mnG3RkBR8nW48Zgxg1HB602x5f/EUclDonHd+kRR3SZvsdJdhlH
+H1YNyG4XC8gu+dBHCaz2xxXWucZjSQ9HqK1dx3zCnka1BpDHo1I0xZObm8fygufG
+R5yVx3STWsdhD3LH2Bqix6NBEMeD3MTHctZAxRwN08eTfwNHwp3Dx8GKh0ct8JLH
+pba4R+hH98bI5MNHMNzIRiCxi0fe/rlHWnI4xXpyFUj2bAnIVfUPSCEYg8jaWgtF
+10tLyKvxQ8jiaUXFPMuNyPf6icdI1y9H5yz6SC9MhMl7oBbJA287SdxofEfRbrRI
+9tiGRx5cCkkjCAZJZHUCSNRDeElvduNEqh3GSV+M2kiq2wRKZl7DSI8Zp8MlybPD
+hHiVRKzkEUREdXdCG64iwwnjZMPmdSvDF83CQ+jti0QVupHE4tC8RiB7+UQwPgVD
+ghZoRHkjaETMXxxFHAkeRI9Fl8RDwEJFjaM5RZ4fJ8Im2kZEFSnXRD8GZcQ5lcNE
+sYf9xG/wAkWNpkXF4+QmRSVfh8W8iAdFqcyOxbbY60RZd23FEskGRU8AhMW5tnhE
+wv2TxTHAw8O5gn/FO4aaxFmJWMX99S3FjvEAxUTGi8V7ufBDM+ayxUrjgkYz8O/F
+hh6IxVmD1cWq2oxEAlULxu6TokXCDAfG5h0ZRlAAEsa/FnRGCKwIxg8jukZiYOnF
+z0oHRzQvzsVDDDpHXCFNR5F5GMcQnRxHQ7/0RZz0Kcbw/YxGWSuHxauusUYR2HVF
+Aq+5RqslR0b+/axG576oRnwCgEYW6e1G8hbdRV0MCEfCCZHFx8ALRyD4fsb4e/BG
+Z5XSxkNpnUYU5PvG49ZRRYEK58b4VofG7qJDxqCZF8e7OqtGnjVJx+M8jEcyBO/G
+rynER5ZqN0dc7g9HrAzoRy15mccSieFHsvcuR2r2QEYBH1vJyv0PR1XgF0kEUltJ
+O81mR+1BhEhmcaXHMP0gSBF1qkbU2bdHbPBqxisF10eElQzIpyObR3Rxc8i3RzxH
+RqRxwy5hUcP6frdDG/lMRG+k1kHkotRB4kP3wBDxY0JZCCZC6QJiQ9BxKsYnyXnF
+aMU9QjVnEMICzUvCdremwTkwdMGz/eDBL2BOQiGHh0G1Nt3A6zaOwa/HIEHj0xfC
+tCToQF93o0DioyvBhynWv4/cXMFM/5DApPCWQJhilMDUU1XACHGYwU5GD0EwFwdB
+rzarwElqfcC52KRAYS6XwT6jN0GfQdU/pnUJQW6Q7D89eBRBdKRyQH7opkHNcWdB
+iJBHQQocT0J4h2VBy4vLP8wXnUEjIJdBuHIRQYd9PEI97NZAe8NmQkD9NcE6QbxC
+rNeOwUaKF0MQ3jDCxrF/Q4O7GcMblEBDWuULw9rSo8M1UH9CLFvBQiSdpUGdDmpD
+isQlQmFlu0N6fsBCsH/OQ5Kl70JNr85DIy17QpiXrEPfa27DotOiQwIBHcNiN3dD
+K49Sw0bPH0NVImjDopygwEUiJ8O3wCbDcEQRwVNElcNWHbZD2v6Hw97RUkSXqjFD
+/S9bRJdzwkS/bz/EGhSJRaGqLsVy759FDmKhxbf9pERaDxlErFPSRLG/jMYQYiHH
+SzRax1P8aUeYxufGqEJRRptDAce9cuDFyDiqxpdaf0bTTB3HrE/hRoprpseh2EZG
+zEr2xw0MLkaFdNZC9A8xQjw2VMCVJqtBlCW4wZhqS8ETinQ/lK1JQWKRusFsidVA
+uDdpRE8EWEPqJW9AWGUNwtLokcCS00HCythFQMz2isKDo9FCkCyjQsual8HWZ5nC
+cAH9QZycdEHLcfXBNoJAQnWFlMGiSJpChjtRws2HkUJrcafCPDOxQp/KusI0wINC
+DwprwvIUf0JxMs3Cu4W+QaSGy8JL+7TBCNq0wlJnBMLF35PCagmqwnw77sESHwzD
+WtpWQtwlC8NpigpEBMVoQgL7MsLoR47DRsI8Q3biicMbvNBD2Cqmwy8yAEQsj6LC
+JW0tRLpUr0KcEHJE4RqtQ7IVpUTNC0JEr2CUw4jmSUWgmSfF0pkow1gXOUTGygXC
+pdVSRNRAJUQQORZEV5GbRGRAkkNs8tFETd2Fw6gc+kTvEiXE3jb5RIYossQvtZhE
+TrIDxa6NFsNS2x7F3EiKxLJbAcUpywnFNK9ExB6xTMXm2rdEXepWxT0mgEVEs+3E
+fja5RYakAkXZUk5FOyoGRg0L/sUfxj1Gzz2Nxp14HEWCs1vGlZ5sxjmmcMU0nKlF
+J2KYR6Vg68d++0LIlUV4x0OhK8eEkHDHfCGARobEmccz3QbHSNFux/+rf8dQr9nH
+7SgqxqxlVchPzO9FKg2YyOZGLT0NPmG9bgjDO4Jhnj2Il1s8QgoSO86ykbsa6QK8
+7FUxO4P9AD1egYa+ah4LP0V0rT17Ip28Ec5qPSGlGTzFbcE94RGJvdyE4j2lFPY9
+cuIEPTNXCb44JaA9MF4gvZz5qj3yN5k8i5wCPhaGjjwd0SQ+dqKmub1nJz6evQo8
+SuooPtmgAbwU9RA+1TcovVHhID53PNS8u+s1PjXDq7yQRiM+MWEavSYPIj5DXBO9
+uUMrPsBU+Ly0QiY+m3gJvekGLD5gEDa9gAsmPt8+J73w9ig+pllBvSLCIz6I0kS9
+jkYjPrw8UL3tWSA+vAxfvceCID7uEn690CgdPiwPir2xKxk+2/+TvZ33Gj6ByZ+9
+1AAUPsjRrb1ltA8+FXy+vaYZCz6lrs29sAEFPrvn3b1cCfs90+TuvQtR6D2k5v69
+y5TVPbzsCL75ML89d1MSvvNOoz2sNxu+2pSDPewnI77XYT49LBMrvt2V0TxE3jC+
+WO3+Orc9NL7bM8y8E7M0vkVmX73NGC++rFKxvSaJI763evG9a9wNvmDkGL6ANt+9
+sCwzvjWdiL0sQUK+hR9PvJ0IPL6YL149Ly8WvutJ+D3ncZm9aGAyPnEN2zyvfzY+
+ncj3PZqE6z2UzB4+eiAXvCKNJr2m0eG9YeSoRMLEEUQmok/ETCZPwx7k9EPSZdBB
+NWS7Q+ZZFUPHFU5E5PxeQ4+QX8ZIv8HFMrjIw2ncYcJ0z6NCxzObQvgAAsTa6k9D
+QgaTQjjFN8Qa/dPCoUNrQPbhY0MJ2hbD1OqdQ76iWsNjgUREFLjEwyt/ZEQjZbDD
+VZSPRHrEocOj5KFE/1cqw4KCl0QY+07DA0qgRP5nakLDQqNECWf3Q3edlkRVikpE
+yZNgRMx4mkR71K5DmK3ORPc0BsS+++VEHXOZxVXF4UIAyWBEcWY3RRUhssSuSUZF
+/1xAxT3qKEWn1ZLFghkbRVkY08Vk3NFENM8QxjvAJkMrbz/GeMfjxJvkpcWWJdPG
+1VmqRvcgsMVdULHFu5AmRSTX/sU8G/XEU/YBxsORxsWCeszF7dcixsUwXsWBSlrG
+lDCpRC7XgcbcKtJFJjR+xh0vQ0b5k1fGanCBRhqlAsZUsJBGCmv0wwcaekYgJglG
+0wgARvW6hEaWhb7FbT6fRrOZwMa35E5GA18Ix7bTXcb7z0LGH99Nx0ULHUcX8TbH
+4/CHR8XwJEaHy5DERomxxlVWiEez9eZIos0OSa3rkMg2nk5IipP2RofXzkeUZx9I
+UJ4LSEbLJEe1KVRICqXWR8XfOUi+iqRIsVIlSBmY+kiK7NFD7vRVQ/rDHMPfoerD
+an2lQmVmgkKcvQBDCgEBQ/TD30OXK4jDolOoRL5u38SkXALDNnhZwkrR7MBglAbC
+6Xwpw3sEvEKkCppDbtOYwzRtncK7lxbDqDuUwZ6Q3MLYTSpDmADuQDjFakPGnwhC
+uJ2GQ65vGMJkPGJDaMkKw95bZkMKzyHCzTH8QmjlgsGQFnlDlmhYQqkwZEPBvRRD
+CxAuQ90OU0Lh9/FCNa8gQ8kpSEJzHHVDAMijQVd6ZENlOBHEEpCDQnU/AUONkp1D
+5RSiPqcst0MEgovDUK7IQ55HxMMVAZxD0Xw/xHu6okNtY3zEs7iMQ1zkm8T7QQND
+I8WSxALAGsUUX9xEh0KZxEnj5MOHltFD6u9YxNIRzsIslmjEPreRw74DRsTsvUvE
+Ia8ixC1amcSFPJvDJPusxE4qAEMj3+/EpCI8RKg8tsSCT6hENAWJxGsx20SdDAbE
+yAzERHTK3EOeEpFEt3GcRN14vkJns/9EySDgxLcT6US5WUbFTj0oQpFDG8UqPXzF
+XNgQRebgicWTG7ZFGg6RxIipg8SPMrrEQR3CRrbOB0fp8fVG1mEwx4Lxd0YkZ8PF
+Ij8/RqSGrUXC1NVFiTvxQnUuX0a51RNEFzyERoNoDkaIMXpGELtKRg==
+      </Stream>
+    </Array>
+  </LIGO_LW>
+  <LIGO_LW Name="Result[2]" Type="TransferFunction">
+    <Param Name="Flag" Type="string">Result</Param>
+    <Param Name="Subtype" Type="int">5</Param>
+    <Param Name="f0" Type="double" Unit="Hz">0</Param>
+    <Param Name="df" Type="double" Unit="Hz">0</Param>
+    <Time Name="t0" Type="GPS">962668790.150390625</Time>
+    <Param Name="BW" Type="double" Unit="Hz">0.11107</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="AverageType" Type="int">0</Param>
+    <Param Name="Averages" Type="int">30</Param>
+    <Param Name="N" Type="int">61</Param>
+    <Param Name="M" Type="int">10</Param>
+    <Param Name="ChannelA" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelB[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelB[1]" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[2]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="ChannelB[3]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="ChannelB[4]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="ChannelB[5]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="ChannelB[6]" Type="string" Unit="channel">L1:LSC-REFL_Q</Param>
+    <Param Name="ChannelB[7]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="ChannelB[8]" Type="string" Unit="channel">L1:LSC-AS5_I_OUT</Param>
+    <Param Name="ChannelB[9]" Type="string" Unit="channel">L1:OMC-PD_SHUTTER_OUT</Param>
+    <Array Type="float">
+      <Dim>671</Dim>
+      <Stream Encoding="LittleEndian,base64">
+AAAgQs+PLkLjcj5CHshPQi6xYkLWUndCl+qGQvoxk0Jzl6BCCzWvQiknv0LMjNBC
+w4fjQvE8+EJMagdDT70TQ3YvIUPj2i9DGdw/QzRSUUMiX2RD6yd5Q3rqh0MnSZRD
+CcihQ1mBsEO1kcBDVxjSQ0035UPDE/pDIWsIRITVFEQsYSJEbCgxRP1HQUQ131JE
+RRBmRHoAe0RC7IhEZmKVROD6okQd0LFE8f7BRNCm00QK6uZEEe77RN1tCUXN7xVF
+JZUjRW14MkWStkJFJ29URZ7EZ0WJ3HxF8++JRbp9lkX9L6RFXCGzReFuw0U9ONVF
+AKDoRQAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD/VMbQ8iT+ZO/+CGj708io+vpgrPKnhETjEe/U9g12WPoquzj0aAjU9
+kCwEPpOoDj5rLIU+G6JcPsGXUj9dQSQ/d0ZRP6hIHz+Qamc/Uwh2P2hUdj++vnk/
+9+F+P9P/fj/O53o/L2V4P3zOfT+s7n4/cLF9P7rKfj/RKn4/Cqx9P/cTfT+YBnw/
+/tx+P5FUfz+KxX4/kmN9P42Pfj/LaX8/4+J+P+Nwfz/vHH8/Mxl/P2YMfj8JSn4/
+c5N9P0WNfD997Xs/NiN2P9rEfD8WVXw/mSFzPxkvAz+ytg4+RvJtP3+NYj/IZG4/
+T9kSP7spBj+RDrE+21fEPd0JPzylXo08HyuWPTGsHTwX2VQ7k8e/PvDJqD76n4k+
+rL01Proi3j5aMvU+kYwSP/kJCD/Qlno/xiR6P6XUez8CMWw/iLh9P26DfT+p6H0/
+6ex9P45Yfz/3ln4/tWZ/P+jHcT8wE38/C/V+P9gTfz/hk38/CP9+P3VNfz8OPn8/
+0R9/P9RZfz8mOH8/cAt/P0znfj+/P38/x6t/P+qxfz8HtX8/lZF/PxSmfz+2O38/
+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
+      </Stream>
+    </Array>
+  </LIGO_LW>
+  <LIGO_LW Name="Result[3]" Type="TransferFunction">
+    <Param Name="Flag" Type="string">Result</Param>
+    <Param Name="Subtype" Type="int">5</Param>
+    <Param Name="f0" Type="double" Unit="Hz">0</Param>
+    <Param Name="df" Type="double" Unit="Hz">0</Param>
+    <Time Name="t0" Type="GPS">962668790.150390625</Time>
+    <Param Name="BW" Type="double" Unit="Hz">0.11107</Param>
+    <Param Name="Window" Type="int">1</Param>
+    <Param Name="AverageType" Type="int">0</Param>
+    <Param Name="Averages" Type="int">30</Param>
+    <Param Name="N" Type="int">61</Param>
+    <Param Name="M" Type="int">10</Param>
+    <Param Name="ChannelB[0]" Type="string" Unit="channel">L1:LSC-MOD_2_EXC</Param>
+    <Param Name="ChannelA" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[1]" Type="string" Unit="channel">L1:OMC-PD_SUM_OUT_DAQ</Param>
+    <Param Name="ChannelB[2]" Type="string" Unit="channel">L1:LSC-AS5_Q_OUT</Param>
+    <Param Name="ChannelB[3]" Type="string" Unit="channel">L1:LSC-MICH_IN1</Param>
+    <Param Name="ChannelB[4]" Type="string" Unit="channel">L1:LSC-PRC_IN1</Param>
+    <Param Name="ChannelB[5]" Type="string" Unit="channel">L1:LSC-CARM_IN1</Param>
+    <Param Name="ChannelB[6]" Type="string" Unit="channel">L1:LSC-REFL_Q</Param>
+    <Param Name="ChannelB[7]" Type="string" Unit="channel">L1:LSC-DARM_ERR</Param>
+    <Param Name="ChannelB[8]" Type="string" Unit="channel">L1:LSC-AS5_I_OUT</Param>
+    <Param Name="ChannelB[9]" Type="string" Unit="channel">L1:OMC-PD_SHUTTER_OUT</Param>
+    <Array Type="float">
+      <Dim>671</Dim>
+      <Stream Encoding="LittleEndian,base64">
+AAAgQs+PLkLjcj5CHshPQi6xYkLWUndCl+qGQvoxk0Jzl6BCCzWvQiknv0LMjNBC
+w4fjQvE8+EJMagdDT70TQ3YvIUPj2i9DGdw/QzRSUUMiX2RD6yd5Q3rqh0MnSZRD
+CcihQ1mBsEO1kcBDVxjSQ0035UPDE/pDIWsIRITVFEQsYSJEbCgxRP1HQUQ131JE
+RRBmRHoAe0RC7IhEZmKVROD6okQd0LFE8f7BRNCm00QK6uZEEe77RN1tCUXN7xVF
+JZUjRW14MkWStkJFJ29URZ7EZ0WJ3HxF8++JRbp9lkX9L6RFXCGzReFuw0U9ONVF
+AKDoRdUxtDyJP5k7/4IaPvTyKj6+mCs8qeEROMR79T2DXZY+iq7OPRoCNT2QLAQ+
+k6gOPmsshT4bolw+wZdSP11BJD93RlE/qEgfP5BqZz9TCHY/aFR2P76+eT/34X4/
+0/9+P87nej8vZXg/fM59P6zufj9wsX0/usp+P9Eqfj8KrH0/9xN9P5gGfD/+3H4/
+kVR/P4rFfj+SY30/jY9+P8tpfz/j4n4/43B/P+8cfz8zGX8/Zgx+PwlKfj9zk30/
+RY18P33tez82I3Y/2sR8PxZVfD+ZIXM/GS8DP7K2Dj5G8m0/f41iP8hkbj9P2RI/
+uykGP5EOsT4AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/
+AACAPwAAgD8AAIA/+jORPUuedz3m7V0+G8ymO1m+KT47JyQ9NsIKPZlzgj2gLMM8
+4lkGPdUVrj0k1go+tUcMPvib+T3gtFE/Pd8gP/sgTT91RhI/Y7dmP0/rcz9Mo3I/
+TYt3P4ydfj9cUn4/YJR6P6I0aD+oTX0/l1d+P9tofD+Yfn4/M059PxZofT+5Zns/
+SSV6P5DcfT9m0n4/C+F9P7YdfT/2gX4/LPN+P5m6fj8hLX8/CRV/P/ojfz9J3X4/
+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
+      </Stream>
+    </Array>
+  </LIGO_LW>
+</LIGO_LW>

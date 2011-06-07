@@ -1,0 +1,158 @@
+
+Marconi set to 0.1 radians PM
+
+ - huge increase in DARM noise even with no excitation
+
+23:00 Marconi set to 0.01 radians 
+
+6.31 / 4.35 W input power
+
+Amplitude 0.01 volts - middling coherence
+Amplitude 0.1 volts - lost lock almost immediately
+
+Amplitude 0.03 volts - is good!
+30 cycles, 0.3 sec, 30 avgs
+
+23:30 x0= 10pm
+
+
+00:46 Locked on the minus fringe
+
+02:16 Switched to AM, indicated 5% modulation depth on the Marconi
+Lowered Marconi from 13dBm to 12.7dBm to allow for AM
+(Saw drop in SPOB)
+Trying excitation amplitude 0.003
+Still at x0=-5
+Seemed fine until 300 Hz
+
+Now using:
+
+20   0.003
+200  0.001
+8000 0.001
+
+Lost lock again, much earlier this time.
+
+02:43 Doing flat 0.001 amplitude in RF.
+Coherence not so great,
+Coherence superb at 0.01 amplitude.
+
+03:19 Low noise DC at x0=-13
+amplitude 0.001 seems OK
+
+03:36 train!
+
+At x0=20 it got a long way with enormous coherence with amp 0.01
+
+04:40 Set script back to positive fringe
+
+-------------------------------------------------------------------------------
+
+.xml files exported to .txt and .coh text files, with columns:
+
+0: DARM_ERR
+1: MICH_IN1
+2: PRC_IN1
+3: CARM_IN1
+4: OMC-PD_SUM_OUT_DAQ
+5: AS5_Q_OUT
+6: AS5_I_OUT
+7: OMC-PD_SHUTTER_OUT
+
+
+--------------------------------------------------------------------------------
+
+To check the calibration of the Marconi's AM drive, I locked the OMC
+to the 24 MHz RF sideband in a single bounce configuration and took a 
+swept-sine from the Marconi excitation to OMC PD-SUM.  The resulting
+transfer function was flat up to about 1 kHz where the anti-aliasing
+filter kicks in.  The coupling level of sideband RIN per AM modulation
+depth agrees with expectation.
+
+
+The oscillator produces
+
+phi(t) = Gamma sin Omega t 
+
+where Omega = 24.484430 MHz is the frequency of our resonant sideband.
+
+We feed this into the EOM, which produces phase modulation on the
+laser carrier:
+
+exp{i omega t} exp{ i phi(t) } = exp{i omega t} ( J_0(Gamma) + J_1(Gamma) exp{i Omega t} + cdots)
+
+where omega is the optical frequency, and where the nominal modulation depth is about &Gamma; = 
+<a href="http://ilog.ligo-la.caltech.edu/ilog/pub/ilog.cgi?group=detector&date_to_view=06/09/2009&anchor_to_scroll_to=2009:06:09:18:02:43-fricke">0.32 radians</a>.
+
+If we apply amplitude modulation (AM) to the RF oscillator, then the 
+modulation index becomes:
+
+Gamma = Gamma_0 ( 1 + M sin Wt)
+
+where W is the amplitude modulation frequency, and M is the AM modulation depth.
+
+Treating this as a perturbation of the nominal modulation depth, the
+amplitude of the first order sideband becomes:
+
+J_1(Gamma) = J_1(Gamma0) + (Gamma - Gamma0) J_1'(Gamma0) + cdots
+
+           = J_1(Gamma0) + Gamma_0 M (sin Wt) J_1'(Gamma0) + cdots
+ 
+where J_1' is the first derivative of J_1.  There is a nice recursion
+relation giving the derivatives of Bessel functions:
+
+J_N' = (1/2)( J_(N-1) - J_(N+1) )
+
+So the relative amplitude noise of the sideband at frequency W is:
+
+Gamma_0 M J_1'(Gamma0) / J_1(Gamma0)
+
+(1/2) Gamma_0 M (J_0 - J_2)/J_1
+
+Square that to get relative intensity noise.
+
+Divide by M to get (sideband RIN)/(oscillator AM).
+
+
+
+
+The AM drive to the Marconi function generator (i.e. LSC-MOD_2_EXC) is
+calibrated in volts.  The Marconi modulation calibration is
+furthermore some indicated AM depth per Sqrt(2) volts.  
+
+During my tests the AM modulation depth was set to 5%, giving an
+expected calibration of (5%)/(sqrt 2) volts.
+
+--
+
+
+
+The AM drive to the Marconi function generator (i.e. LSC-MOD_2_EXC) is calibrated in volts.  The Marconi modulation calibration is given by the AM depth indicated on the front panel, per Sqrt(2) volts. During this test the Marconi's AM modulation depth was set to 5%, giving an expected calibration of (5%AM)/(sqrt 2) volts.
+
+The OMC PD_SUM during this test was 0.407 mA (a mean value of 0.264 mA corrected for a dark value of -0.143 mA).
+
+
+
+The Marconi or Wenzel oscillator produces &phi;(t) = &Gamma; sin &Omega;t where &Omega; &asymp; 24.484430 MHz is the frequency of our resonant sideband, and &Gamma; is the modulation depth it will produce in the EOM;
+
+We feed this into the EOM, which produces phase modulation on the laser carrier:
+
+exp{i &omega;t} exp{ i &phi;(t) } = exp{i &omega;t} ( J&#8320(&Gamma) + J&#8321;(&Gamma) exp{i &Omega; t} + cdots)
+
+where &omega; is the optical frequency, and where the nominal modulation depth is  &Gamma; &asymp; <a href="http://ilog.ligo-la.caltech.edu/ilog/pub/ilog.cgi?group=detector&date_to_view=06/09/2009&anchor_to_scroll_to=2009:06:09:18:02:43-fricke">0.32 radians</a>.  The power in the first order sideband is given by J&#8321;(&Gamma)&sup2;.
+
+If we apply amplitude modulation (AM) to the RF oscillator, then the modulation index varies around its mean value &Gamma;&#8320:
+
+&Gamma; = &Gamma;&#8320; ( 1 + M sin Wt)
+
+where W is the amplitude modulation frequency, and M is the AM modulation depth.  To find the resulting modulation of the sideband power, we can expand J&#8321;(&Gamma)&sup2; around &Gamma;&#8320;:
+
+J&#8321;(&Gamma;)&sup2; &asymp; J&#8321;(&Gamma;&#8320;)&sup2; + 2 (&Gamma; - &Gamma;&#8320;) J&#8321;'(&Gamma;&#8320;) J&#8321;(&Gamma;&#8320;)
+
+J&#8321;(&Gamma;)&sup2; &asymp; J&#8321;(&Gamma;&#8320;)&sup2; + 2 &Gamma;&#8320; M (sin Wt) J&#8321;'(&Gamma;&#8320;) J&#8321;(&Gamma;&#8320;)
+ 
+where J&#8321;' is the first derivative of J&#8321;.  Picking out the sinusoidal term, we see that the amplitude of the sideband power variations is 2 &Gamma;&#8320; M J&#8321;'(&Gamma;&#8320;) J&#8321;(&Gamma;&#8320;).  Divide by J&#8321;(&Gamma;&#8320;)&sup2; to get sideband RIN.  To get RIN per AM, further divide by M.  We get:
+
+<b>sideband RIN per oscillator AM =  2 &Gamma;&#8320; J&#8321;'(&Gamma;&#8320;) / J&#8321;(&Gamma;&#8320;)</b>
+
+Use J&#8321;'=(J&#8320;-J&#8322;)/2 to calculate the derivative.
