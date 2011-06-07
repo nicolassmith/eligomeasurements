@@ -1,0 +1,75 @@
+CM000.78D  CM001.78S  SCRN0001.GIF -- Measurement of CM OLG during DC readout with 10 W input
+
+-- Calibrating REFL_I --
+
+Procedure:
+
+1. Put an excitation on one of the ETMs.  In the absense of loops,
+this produces equal DARM and CARM motion.
+
+2. Measure the response in DARM_ERR and REFL_I.
+
+3. Apply the DARM_ERR calibration.  This takes care of the suppression
+of the DARM part of the motion.
+
+4. Compensate for the CM suppression by multiplying by (1-G) where G
+is the CM OLG at the probe frequency.
+
+5. Equate the calibrated DARM and loop-corrected CARM.  This gives a
+calibration for CARM in meters at the probe frequency.
+
+6. Multiply by (d nu)/(d L) = -nu/L to convert from meters to Hz.
+
+7. Assume a model for the CARM-->REFL_I transfer function to propagate
+the calibration to other frequencies.  This transfer function is
+simply the coupled-cavity pole (Rana's thesis, Eq. 3.5).
+
+Results:
+
+1. Used awggui to excite L1:SUS-ETMX_LSC_EXC at 7300 Hz
+
+2. tdsdmd reported 3.8e-6 counts in DARM_ERR (coh 1.00 with 1500 avgs)
+               and 5.0e-2 counts in REFL2_I  (coh 0.32 with 1500 avgs)
+               and 43.3   counts L1:SUS-ETMX_LSC_EXC (coh 1.00)
+
+3. DARM_ERR calibration at 7300 Hz is 1.276e-10 meters/count 
+
+4. CM OLG at 7300 Hz is G_CM = 10.9 dB and -122.2 degrees, so the
+   correction is (1 - G) = 12.3 dB and 45.9 degrees.
+
+5.   (3.8e-6 counts) * (1.276e-10 meters/count) 
+   = (5.0e-2 counts) * (12.3 dB) * REFL2I_calibration
+   
+  REFL2_I calibration = 3.8e-6 * 1.276e-10 / (5e-2 * undb(12.3)) 
+  REFL2_I calibration = 2.35e-15 (residual meters)/count @ 7300 Hz
+
+6. (d nu)/(d L) = - v / L = c / (L lambda) = 7e10 Hz/m
+   with
+     c = 3e8 meters/sec
+     L = 4000 meters
+     lambda = 1e-6 meters
+ 
+  REFL2_I calibration = 1.66e-4 Hz/count @ 7300 Hz
+  
+7. Assume 1/f:
+
+  REFL2_I calibration = 1.66e-4 Hz/count * [ f/(7300 Hz) ]
+
+Alternatively:
+
+[Valera]
+The frequency drive (LSC-MOD_3) was calibrated as following:
+
+- Drove ETMX at 7100 Hz and measured DARM and REFL_I response. This gives the REFL_i calibration
+3.35e-4 (DARM counts)*7.9e-11 (DARM m/c) /4.34e-2 (REFL_I counts)*3e14(Hz)/4e3(m)
+
+- Drove MOD and measured REFL_I to get 4.77 (REFL_I counts)/1e-3 (MOD counts)
+
+- Both measurements above were done with ifo locked on DC. It turns out we don't have very high 
+CM loop gain at 7 kHz at the moment. The out of loop response REFL/MOD is about the same.
+
+- Multiplied the MOD calibration by f/7100 to correct for the cavity pole (tx Rana for reminder).
+
+The laser frequency noise coupling goes down with frequency as it should in DC readout but the
+magnitude appears to be 10x larger than expected. Possible reasons for discrepancy 
+with the modeled result are the DARM drive calibration at 7 kHz, the arm buildup imbalance, ...
