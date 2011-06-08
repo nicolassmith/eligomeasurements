@@ -3,7 +3,7 @@ mDV
 
 tgood = 971396235;
 
-duration = 10*60; %10 minutes of data.
+duration = 10;%*60; %10 minutes of data.
 
 % channels
 

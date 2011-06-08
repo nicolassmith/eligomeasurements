@@ -6,8 +6,8 @@ load('../OLMONcalib.mat')
 clear dataStructure;
 
 % organize data
-%offsets = [-29 -23 -15 -07 07 15 23 29];
-offsets = [07 15 23 29];
+offsets = [-29 -23 -15 -07 07 15 23 29];
+%offsets = [07 15 23 29];
 offstring = '';
 
 offsetCalib = 9.6/15;
