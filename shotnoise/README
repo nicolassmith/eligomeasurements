@@ -1,0 +1,11 @@
+===============================================================================
+L1/H1 S6 shot noise estimates  -- elog: http://goo.gl/NFlVi
+===============================================================================
+
+These scripts try to dead-reckon the expected shot noise level using
+measurements of the input power, recycling gain, and input and output
+efficiencies.  The expected shot noise is compared to the actual
+spectrum using h(t) data obtained using NDS2.  The NDS2 data is cached
+in a file so that running the scripts multiple times on the same data
+is fast.
+
